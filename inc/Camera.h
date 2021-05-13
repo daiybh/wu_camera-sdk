@@ -123,7 +123,7 @@ protected:
 
 public:
 	//callback function
-	ADD_LOG _ADD_LOG;
+	ADD_LOG _ADD_LOG=nullptr;
 
 	NET_SEARCHCALLBACK _NET_SEARCHCALLBACK;
 	NET_EVENTCALLBACK _NET_EVENTCALLBACK;
