@@ -98,12 +98,12 @@ typedef void(CALLBACK *ADD_LOG)(const char *log, void *UserParam);
 class CCamera
 {
 public:
-	long long m_playinstance;		 //播放视频句柄
+	long long m_playinstance=0;		 //播放视频句柄
 	NET_PREVIEWPARAM m_previewparam; // 视频预览参数
 	NET_CONPARAM m_conparam;		 //相机登录参数
 	int m_port;
 	char m_ipaddrstr[16];	 //000.000.000.000
-	long long m_caminstance; //设备登录句柄
+	long long m_caminstance=0; //设备登录句柄
 	int m_camversion;
 	bool isValidIpaddr()
 	{
