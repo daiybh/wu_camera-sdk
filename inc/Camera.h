@@ -725,12 +725,12 @@ public:
 		AddLogtoList(log);
 	}
 
-	void set_3A_PARAM_V1(NET_DEV_CAMERAPARAM_V1 &paramV1)
+	bool set_3A_PARAM_V1(NET_DEV_CAMERAPARAM_V1 &paramV1)
 	{
 		NET_DEV_CAMERACFG_V1 v1;
 
 		memcpy(&v1.CameraParam, &paramV1, sizeof(paramV1));
 
-		EYEST_NET_SET_3A_PARAM_V1(m_caminstance, &v1);
+		return	EYEST_NET_SET_3A_PARAM_V1(m_caminstance, &v1);
 	}
 };
