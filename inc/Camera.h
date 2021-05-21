@@ -98,12 +98,12 @@ typedef void(CALLBACK *ADD_LOG)(const char *log, void *UserParam);
 class CCamera
 {
 public:
-	long long m_playinstance=0;		 //播放视频句柄
+	long long m_playinstance = 0;	 //播放视频句柄
 	NET_PREVIEWPARAM m_previewparam; // 视频预览参数
 	NET_CONPARAM m_conparam;		 //相机登录参数
 	int m_port;
-	char m_ipaddrstr[16];	 //000.000.000.000
-	long long m_caminstance=0; //设备登录句柄
+	char m_ipaddrstr[16];		 //000.000.000.000
+	long long m_caminstance = 0; //设备登录句柄
 	int m_camversion;
 	bool isValidIpaddr()
 	{
@@ -123,7 +123,7 @@ protected:
 
 public:
 	//callback function
-	ADD_LOG _ADD_LOG=nullptr;
+	ADD_LOG _ADD_LOG = nullptr;
 
 	NET_SEARCHCALLBACK _NET_SEARCHCALLBACK;
 	NET_EVENTCALLBACK _NET_EVENTCALLBACK;
@@ -724,13 +724,21 @@ public:
 		sprintf(log, "发送语音%s--%s", ret ? "成功" : "失败", audioData);
 		AddLogtoList(log);
 	}
-
-	bool set_3A_PARAM_V1(NET_DEV_CAMERAPARAM_V1 &paramV1)
+	int set_3A_PARAM_V1(NET_DEV_CAMERAPARAM_V1 &paramV1)
 	{
 		NET_DEV_CAMERACFG_V1 v1;
+		v1.CameraMode = 0;
+		if (!EYEST_NET_GET_3A_PARAM_V1(m_caminstance, &v1))
+		{
+			//return -1;
+		}
+		Sleep(1000);
+		v1.CameraParam.AVGLight = paramV1.AVGLight;
+		v1.CameraParam.AEMaxTime = paramV1.AEMaxTime;
+		v1.CameraParam.AGain = paramV1.AGain;
 
-		memcpy(&v1.CameraParam, &paramV1, sizeof(paramV1));
-
-		return	EYEST_NET_SET_3A_PARAM_V1(m_caminstance, &v1);
+		if (!EYEST_NET_SET_3A_PARAM_V1(m_caminstance, &v1))
+			return -2;
+		return 0;
 	}
 };
