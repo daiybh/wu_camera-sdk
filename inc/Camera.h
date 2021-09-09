@@ -225,22 +225,20 @@ public:
 		sprintf(str, "changeVolume(%d)  %s", value, bRet ? "success" : "failed");
 		AddLogtoList(str);
 	}
-	void openDoor()
+	bool openDoor()
 	{
 		if (m_caminstance <= 0)
 		{
-			char str[1024];
-			sprintf(str, "相机未连接.");
-			AddLogtoList(str);
-			return;
+			AddLogtoList("相机未连接.");
+			return false;
 		}
 		int ret = EYEST_NET_IO_CONTROL_EX(m_ipaddrstr, 37890, 0, 1);
 		if (ret)
-		{
-			char str[1024];
-			sprintf(str, "发送开闸成功.");
-			AddLogtoList(str);
+		{		
+			AddLogtoList("发送开闸成功.");
+			return true;
 		}
+		return false;
 	}
 	void GetPic(char *rgb, int *width, int *height)
 	{
@@ -268,17 +266,13 @@ public:
 	{
 		if (m_caminstance <= 0)
 		{
-			char str[1024];
-			sprintf(str, "相机未连接.");
-			AddLogtoList(str);
+			AddLogtoList("相机未连接");
 			return;
 		}
-		int ret = EYEST_NET_IO_CLOSE_DOOR_EX(m_ipaddrstr, 37890, 0, 1);
+		int  ret = EYEST_NET_IO_CLOSE_DOOR_EX(m_ipaddrstr, 37890, 0, 1);
 		if (ret)
 		{
-			char str[1024];
-			sprintf(str, "发送关闸成功.");
-			AddLogtoList(str);
+			AddLogtoList("发送关闸成功");
 		}
 	}
 
@@ -324,12 +318,10 @@ public:
 
 		if (m_caminstance > 0)
 		{
-			char str[1024];
-			sprintf(str, "相机已连接.");
-			AddLogtoList(str);
+			AddLogtoList("相机已连接");
 			if (m_playinstance > 0)
 			{
-				EYEST_NET_STOP_PREVIEW(m_caminstance, m_playinstance);
+				EYEST_NET_STOP_PREVIEW(m_caminstance,m_playinstance);
 				m_playinstance = 0;
 			}
 			EYEST_NET_LOGOUT(m_caminstance);
@@ -374,35 +366,33 @@ public:
 
 		if (m_caminstance < 0)
 		{
-			char str[1024];
-			sprintf(str, "相机未连接,请先连接相机");
-			AddLogtoList(str);
+			AddLogtoList("相机未连接,请先连接相机");
 			return;
 		}
 		if (m_playinstance > 0)
 		{
-			char str[1024];
-			sprintf(str, "视频正在播放");
-			AddLogtoList(str);
+			AddLogtoList("视频正在播放");
 			return;
 		}
 
 		m_previewparam.AutoReconnect = 1; //视频掉线自动重连
 		m_previewparam.Channel = 0;
-		m_previewparam.VideoPort = 556; // RTSP端口
-		m_previewparam.StreamType = 1;	// m_videotype.GetCurSel(); // 子码流
+		m_previewparam.VideoPort = 556; // RTSP端口 
+		m_previewparam.StreamType = 1;// m_videotype.GetCurSel(); // 子码流
 
 		m_previewparam.StatusCallback = _NET_PREVIEWSTAUSCALLBACK;
-		m_previewparam.DataCallback = _NET_PREVIEWDATACALLBACK;	 //编码数据回调
+		m_previewparam.DataCallback = _NET_PREVIEWDATACALLBACK; //编码数据回调
 		m_previewparam.DecodeCallback = _NET_DECODEDATACALLBACK; //解码BGR 数据回调
-		m_previewparam.hWnd = hWnd;								 // GetDesktopWindow();;// GetDlgItem(IDC_VIDEO)->GetSafeHwnd(); // 播放窗口
+		m_previewparam.hWnd = hWnd;// GetDesktopWindow();;// GetDlgItem(IDC_VIDEO)->GetSafeHwnd(); // 播放窗口
 		m_previewparam.UserParam = this;
-		m_previewparam.Protol = 1; //0 tcp 1:udp
+		m_previewparam.Protol = 1;//0 tcp 1:udp
+
+
 
 		// if need assist focus , set nNeedFocus = 1, then start preview ...
-		m_previewparam.nNeedFocus = 0; // m_needfocus;
+		m_previewparam.nNeedFocus = 0;// m_needfocus;
 		int nHard = 0;
-		int nD3d = 0;
+		int  nD3d = 0;
 
 		EYEST_NET_GET_SUPORT((int)m_previewparam.hWnd, &nHard, &nD3d);
 		std::string str;
@@ -437,11 +427,13 @@ public:
 		{
 			_beginthread(FocusThread, 0, this);
 		}*/
+
 	}
 	bool LEDScreen_setText(const char *textData)
 	{
 
-		unsigned char pSendData[1280] = {0x1A, 0x1B};
+		unsigned char pSendData[1280] = { 0x1A,0x1B };
+
 
 		memcpy(pSendData + 2, textData, strlen(textData));
 
