@@ -740,9 +740,9 @@ public:
 		//EYEST_API  BOOL EYEST_CALL  EYEST_NET_SET_LIGHT_PARAM(NET_CONECTION Conn, NET_DEV_LIGHT_CFG * light_cfg);
 		if (!checkconnenct())return -100;
 		NET_DEV_LIGHT_CFG originalCFG;
-		EYEST_NET_GET_LIGHT_PARAM(m_caminstance,&originalCFG);
+	//	EYEST_NET_GET_LIGHT_PARAM(m_caminstance,&originalCFG);
 
-		Sleep(1000);
+	//	Sleep(1000);
 		originalCFG.light = param.light;
 		if (!EYEST_NET_SET_LIGHT_PARAM(m_caminstance, &originalCFG))
 			return -2;
