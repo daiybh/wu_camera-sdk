@@ -218,12 +218,13 @@ public:
 		return nret == 1;
 	}
 	// value: 0--9
-	void chageVOLUME(int value)
+	bool chageVOLUME(int value)
 	{
 		bool bRet = EYEST_NET_VOLUME_CONTROL(m_ipaddrstr, 37890, value);
-		char str[1024];
-		sprintf(str, "changeVolume(%d)  %s", value, bRet ? "success" : "failed");
-		AddLogtoList(str);
+		//char str[1024];
+		//sprintf(str, "changeVolume(%d)  %s", value, bRet ? "success" : "failed");
+		//AddLogtoList(str);
+		return bRet;
 	}
 	bool openDoor()
 	{
