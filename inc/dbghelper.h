@@ -6,7 +6,7 @@
 // 创建Dump文件  
 inline void CreateDumpFile(LPCWSTR lpstrDumpFilePathName, EXCEPTION_POINTERS *pException)  
 {  
-    HANDLE hDumpFile = CreateFile(lpstrDumpFilePathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);  
+    HANDLE hDumpFile = CreateFileW(lpstrDumpFilePathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);  
     // Dump信息  
     MINIDUMP_EXCEPTION_INFORMATION dumpInfo;  
     dumpInfo.ExceptionPointers = pException;  
