@@ -749,6 +749,13 @@ public:
 			return -2;
 		return 0;
 	}
+	int set_EYEST_NET_RESTART()
+	{
+		if (!checkconnenct())return -100;
+		if (!EYEST_NET_RESTART(m_caminstance))
+			return -2;
+		return 0;
+	}
 	bool checkconnenct()
 	{
 		if (m_caminstance < 0)
