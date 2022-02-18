@@ -38,7 +38,7 @@ inline void initLogger(int iCount)
 #include "spdlog/sinks/daily_file_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/rotating_file_sink.h"
-inline void initLogger(const char *folderPath)
+inline void initLogger(const char *folderPath,int logLevel)
 {
 	if (folderPath == nullptr)
 		folderPath = ".\\";
@@ -49,7 +49,7 @@ inline void initLogger(const char *folderPath)
 
 		std::string fileName = std::string(folderPath)+"/logs/" + loggerName + ".txt";
 		auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(fileName, 0, 0,false,10);
-		file_sink->set_level(spdlog::level::trace);
+		file_sink->set_level(spdlog::level::level_enum( logLevel));
 
 		std::vector<spdlog::sink_ptr> sinks;
 		sinks.push_back(console_sink);
@@ -58,9 +58,9 @@ inline void initLogger(const char *folderPath)
 		auto logger = std::make_shared<spdlog::logger>(loggerName, sinks.begin(), sinks.end());
 		//{ console_sink, file_sink }
 		//logger->flush_on(spdlog::level::info);
-		logger->set_level(spdlog::level::debug);
+		logger->set_level(spdlog::level::info);
 		logger->set_pattern("[%x %X] %L %t [%s:%#-%!]>> %v");
-		logger->info("########################STARt##############################");
+		logger->error("########################STARt##############################");
 
 		spdlog::register_logger(logger);
 		if (bDefault)
