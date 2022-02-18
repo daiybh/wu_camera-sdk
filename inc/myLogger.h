@@ -58,7 +58,7 @@ inline void initLogger(const char *folderPath,int logLevel)
 		auto logger = std::make_shared<spdlog::logger>(loggerName, sinks.begin(), sinks.end());
 		//{ console_sink, file_sink }
 		//logger->flush_on(spdlog::level::info);
-		logger->set_level(spdlog::level::info);
+		logger->set_level(spdlog::level::trace);
 		logger->set_pattern("[%x %X] %L %t [%s:%#-%!]>> %v");
 		logger->error("########################STARt##############################");
 
@@ -80,7 +80,7 @@ inline void initLogger(const char *folderPath,int logLevel)
 
 	spdlog::set_pattern("[%x %X] %L %t [%s:%#-%!]>> %v");
 	spdlog::flush_every(std::chrono::seconds(5));
-	spdlog::flush_on(spdlog::level::info);
+	spdlog::flush_on(spdlog::level::level_enum(logLevel));
 
 }
 #endif
