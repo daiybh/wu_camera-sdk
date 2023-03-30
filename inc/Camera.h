@@ -18,24 +18,24 @@ class ClassCallBack
 	}
 
 public:
-	// ±¨¾¯»Øµ÷
+	// æŠ¥è­¦å›è°ƒ
 	static void __stdcall NET_EVENTCALLBACK(const NET_DEV_ALARM_ITEM *Report, void *UserParam) { outFunName }
 
-	//×´Ì¬»Øµôº¯Êı
+	//çŠ¶æ€å›æ‰å‡½æ•°
 	static void __stdcall NET_CONSTAUSCALLBACK(NET_DEV_STATUS *status, void *UserParam) { outFunName }
 
-	// ¾«¼òµÄ×´Ì¬»Øµ÷
+	// ç²¾ç®€çš„çŠ¶æ€å›è°ƒ
 	static void __stdcall NET_CONSTAUSCALLBACK_EX(char *ipaddr, int status) { outFunName }
 
 	static void __stdcall NET_IO_DATACALLBACK(char *pData, int *nLength, int address) { outFunName }
 
-	//ÖÇÄÜ¼ì²â×´Ì¬»Øµ÷º¯Êı
-	// ÕâÀïÎªÁË¼õÉÙÊı¾İ¿½±´£¬ĞŞ¸Ä»Øµ÷º¯Êı£¬
-	//²ÎÊı¸ÄÎª 0 Í¼ÏñÍ·²¿Êı¾İ£¬1 Í¼ÏñjpegÊı¾İ£¬2 Í¼Ïñjpeg³¤¶È£¬3 ÓÃ»§Êı¾İ
+	//æ™ºèƒ½æ£€æµ‹çŠ¶æ€å›è°ƒå‡½æ•°
+	// è¿™é‡Œä¸ºäº†å‡å°‘æ•°æ®æ‹·è´ï¼Œä¿®æ”¹å›è°ƒå‡½æ•°ï¼Œ
+	//å‚æ•°æ”¹ä¸º 0 å›¾åƒå¤´éƒ¨æ•°æ®ï¼Œ1 å›¾åƒjpegæ•°æ®ï¼Œ2 å›¾åƒjpegé•¿åº¦ï¼Œ3 ç”¨æˆ·æ•°æ®
 	static void __stdcall NET_SMARTRECVCALLBACK(NET_DEV_SMARTRECRESUTLIST *SmartResult, char *pJpeg, int *nLength, char *userdata, void *UserParam)
 	{
 		outFunName char str[1024] = {0};
-		sprintf(str, "µØµã:%s IP:%s ³µÅÆ:%s %.2f  Õı³£³µÁ¾", SmartResult->cambase.DevName,
+		sprintf(str, "åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f  æ­£å¸¸è½¦è¾†", SmartResult->cambase.DevName,
 				SmartResult->DevIP.IpV4, SmartResult->parkspaceresult[0].plateresult.platenum,
 				SmartResult->parkspaceresult[0].plateresult.platereliability);
 		printf(str);
@@ -45,27 +45,27 @@ public:
 	{
 		outFunName
 	}
-	// ¾«¼òµÄÊ¶±ğ½á¹û»Øµ÷º¯Êı
+	// ç²¾ç®€çš„è¯†åˆ«ç»“æœå›è°ƒå‡½æ•°
 	static void __stdcall NET_SMARTRECVCALLBACK_EX(NET_DEV_SMARTRECRESUT_EX *SmartResultEx, char *pJpeg, int *nLength, char *userdata, void *UserParam)
 	{
 		outFunName char str[1024] = {0};
-		sprintf(str, "µØµã:%s IP:%s ³µÅÆ:%s %.2f\n", SmartResultEx->DevName, SmartResultEx->camerIp, SmartResultEx->platenum, SmartResultEx->realbility);
+		sprintf(str, "åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f\n", SmartResultEx->DevName, SmartResultEx->camerIp, SmartResultEx->platenum, SmartResultEx->realbility);
 		printf(str);
 	}
 
-	//ÆäËûÊı¾İ»Øµ÷
-	//°üÀ¨ÍÑ»úÊı¾İ  ¿¨Êı¾İµÈ
+	//å…¶ä»–æ•°æ®å›è°ƒ
+	//åŒ…æ‹¬è„±æœºæ•°æ®  å¡æ•°æ®ç­‰
 	static void __stdcall NET_MISC_CALLBACK(char *pData, int len, void *UserParam)
 	{
 		outFunName
 	}
-	// µÀÕ¢×´Ì¬»Øµ÷Ô­ĞÍ
+	// é“é—¸çŠ¶æ€å›è°ƒåŸå‹
 	static void __stdcall NET_gate_callback(const char *jsongate)
 	{
 		outFunName
 	}
 
-	// ÊÓÆµÊı¾İ»Øµ÷
+	// è§†é¢‘æ•°æ®å›è°ƒ
 	static void __stdcall NET_PREVIEWDATACALLBACK(unsigned char *Frame, int framelength, int width, int height, int frametype, void *UserParam)
 	{
 		static long lcount = 0;
@@ -78,7 +78,7 @@ public:
 		outFunName
 	}
 
-	// Ô¤ÀÀ×´Ì¬»Øµ÷
+	// é¢„è§ˆçŠ¶æ€å›è°ƒ
 	static void __stdcall NET_PREVIEWSTAUSCALLBACK(WORD Code, HWND hWnd, UINT Msg, void *UserParam)
 	{
 		static long lcount = 0;
@@ -86,24 +86,24 @@ public:
 			outFunName
 	}
 
-	//µ÷ÊÔ»Øµ÷
+	//è°ƒè¯•å›è°ƒ
 	static void __stdcall NET_DEBUGVIEWCALLBACK(char *ipaddr, char *szInfo, void *pUser)
 	{
 		outFunName
 	}
 };
 
-//ËÑË÷Éè±¸»Øµ÷º¯Êı
+//æœç´¢è®¾å¤‡å›è°ƒå‡½æ•°
 typedef void(CALLBACK *ADD_LOG)(const char *log, void *UserParam);
 class CCamera
 {
 public:
-	long long m_playinstance = 0;	 //²¥·ÅÊÓÆµ¾ä±ú
-	NET_PREVIEWPARAM m_previewparam; // ÊÓÆµÔ¤ÀÀ²ÎÊı
-	NET_CONPARAM m_conparam;		 //Ïà»úµÇÂ¼²ÎÊı
+	long long m_playinstance = 0;	 //æ’­æ”¾è§†é¢‘å¥æŸ„
+	NET_PREVIEWPARAM m_previewparam; // è§†é¢‘é¢„è§ˆå‚æ•°
+	NET_CONPARAM m_conparam;		 //ç›¸æœºç™»å½•å‚æ•°
 	int m_port;
 	char m_ipaddrstr[16];		 //000.000.000.000
-	long long m_caminstance = 0; //Éè±¸µÇÂ¼¾ä±ú
+	long long m_caminstance = 0; //è®¾å¤‡ç™»å½•å¥æŸ„
 	int m_camversion;
 	bool isValidIpaddr()
 	{
@@ -132,7 +132,7 @@ public:
 	NET_SMARTRECVCALLBACKV1 _NET_SMARTRECVCALLBACKV1 = nullptr;
 	NET_SMARTRECVCALLBACK_EX _NET_SMARTRECVCALLBACK_EX = nullptr;
 	NET_MISC_CALLBACK _NET_MISC_CALLBACK = nullptr;
-	NET_gate_callback _NET_gate_callback = nullptr; // ĞÂÔöµÀÕ¢×´Ì¬¸Ä±ä»Øµ÷º¯Êı 2018.09.25
+	NET_gate_callback _NET_gate_callback = nullptr; // æ–°å¢é“é—¸çŠ¶æ€æ”¹å˜å›è°ƒå‡½æ•° 2018.09.25
 
 	NET_PREVIEWDATACALLBACK _NET_PREVIEWDATACALLBACK = nullptr;
 	NET_PREVIEWSTAUSCALLBACK _NET_PREVIEWSTAUSCALLBACK = nullptr;
@@ -189,7 +189,7 @@ public:
 		}
 
 		char str[1024];
-		sprintf(str, "Cam:%s,Ver:%s [ÒÑÔËĞĞ£º%dÌì%dÊ±%d·Ö%dÃë] CMD:%d PIC:%d", dev_info->EthCfg.EthNICs[0].IPAddr.IpV4,
+		sprintf(str, "Cam:%s,Ver:%s [å·²è¿è¡Œï¼š%då¤©%dæ—¶%dåˆ†%dç§’] CMD:%d PIC:%d", dev_info->EthCfg.EthNICs[0].IPAddr.IpV4,
 				dev_info->SoftwareVer, runday, runhour, runmin, runsec, nCmdConnect, nPicConnect);
 		printf(str);
 		return 1;
@@ -228,15 +228,16 @@ public:
 	}
 	bool openDoor()
 	{
+		std::lock_guard<std::mutex> guard(Data_RW_mutex);
 		if (m_caminstance <= 0)
 		{
-			AddLogtoList("Ïà»úÎ´Á¬½Ó.");
+			AddLogtoList("ç›¸æœºæœªè¿æ¥.");
 			return false;
 		}
 		int ret = EYEST_NET_IO_CONTROL_EX(m_ipaddrstr, 37890, 0, 1);
 		if (ret)
 		{		
-			AddLogtoList("·¢ËÍ¿ªÕ¢³É¹¦.");
+			AddLogtoList("å‘é€å¼€é—¸æˆåŠŸ.");
 			return true;
 		}
 		return false;
@@ -246,7 +247,7 @@ public:
 		if (m_caminstance < 0)
 		{
 			char str[1024];
-			sprintf(str, "Éè±¸Î´µÇÂ¼.");
+			sprintf(str, "è®¾å¤‡æœªç™»å½•.");
 			AddLogtoList(str);
 			return;
 		}
@@ -267,13 +268,13 @@ public:
 	{
 		if (m_caminstance <= 0)
 		{
-			AddLogtoList("Ïà»úÎ´Á¬½Ó");
+			AddLogtoList("ç›¸æœºæœªè¿æ¥");
 			return;
 		}
 		int  ret = EYEST_NET_IO_CLOSE_DOOR_EX(m_ipaddrstr, 37890, 0, 1);
 		if (ret)
 		{
-			AddLogtoList("·¢ËÍ¹ØÕ¢³É¹¦");
+			AddLogtoList("å‘é€å…³é—¸æˆåŠŸ");
 		}
 	}
 
@@ -287,6 +288,15 @@ public:
 		int ret = EYEST_NET_SET_PARK_VIP_PARAM_V1(m_caminstance, &vipList);
 		return ret == 1;
 	}
+
+	std::mutex Data_RW_mutex;
+	bool tryReconnect()
+	{
+		std::lock_guard<std::mutex> guard(Data_RW_mutex);
+		if (m_caminstance > 0)return true;
+		connect(m_ipaddrstr, 8088);
+		return m_caminstance>0;
+	}
 	void connect(const char *ip, int port)
 	{
 		strcpy(m_ipaddrstr, ip);
@@ -294,22 +304,22 @@ public:
 
 		memset(&m_conparam, 0, sizeof(NET_CONPARAM));
 
-		m_conparam.AutoReconnect = 1;		  //×Ô¶¯ÖØÁ¬
-		strcpy(m_conparam.UserName, "admin"); //ÔİÊ±Î´ÓÃ
-		strcpy(m_conparam.PassWord, "admin"); //ÔİÊ±Î´ÓÃ
+		m_conparam.AutoReconnect = 1;		  //è‡ªåŠ¨é‡è¿
+		strcpy(m_conparam.UserName, "admin"); //æš‚æ—¶æœªç”¨
+		strcpy(m_conparam.PassWord, "admin"); //æš‚æ—¶æœªç”¨
 
 		// use this fun call back
 
-		m_conparam.EventCallback = CCamera::_NET_EVENTCALLBACK;		//´íÎóÊÂ¼ş»Øµ÷º¯Êı
-		m_conparam.StatusCallback = CCamera::_NET_CONSTAUSCALLBACK; //×´Ì¬»Øµ÷º¯Êı
+		m_conparam.EventCallback = CCamera::_NET_EVENTCALLBACK;		//é”™è¯¯äº‹ä»¶å›è°ƒå‡½æ•°
+		m_conparam.StatusCallback = CCamera::_NET_CONSTAUSCALLBACK; //çŠ¶æ€å›è°ƒå‡½æ•°
 
-		m_conparam.spaceresultcallback = CCamera::_NET_SMARTRECVCALLBACK;	  // ÖÇÄÜ¼ì²â×´Ì¬»Øµ÷º¯Êı
-		m_conparam.spaceresultcallbackv1 = CCamera::_NET_SMARTRECVCALLBACKV1; // ÖÇÄÜ¼ì²â×´Ì¬»Øµ÷º¯Êı ¼æÈİ°æ±¾
+		m_conparam.spaceresultcallback = CCamera::_NET_SMARTRECVCALLBACK;	  // æ™ºèƒ½æ£€æµ‹çŠ¶æ€å›è°ƒå‡½æ•°
+		m_conparam.spaceresultcallbackv1 = CCamera::_NET_SMARTRECVCALLBACKV1; // æ™ºèƒ½æ£€æµ‹çŠ¶æ€å›è°ƒå‡½æ•° å…¼å®¹ç‰ˆæœ¬
 
-		m_conparam.spaceresultcallbackex = CCamera::_NET_SMARTRECVCALLBACK_EX; // ¾«¼òµÄ×¢Ê¶±ğ½á¹û×¢²á»Øµ÷
+		m_conparam.spaceresultcallbackex = CCamera::_NET_SMARTRECVCALLBACK_EX; // ç²¾ç®€çš„æ³¨è¯†åˆ«ç»“æœæ³¨å†Œå›è°ƒ
 
-		m_conparam.misccallback = CCamera::_NET_MISC_CALLBACK;		 // ÔÓÏî½á¹û»Øµ÷º¯Êı
-		m_conparam.gatestatuscallback = CCamera::_NET_gate_callback; // ĞÂÔöµÀÕ¢×´Ì¬¸Ä±ä»Øµ÷º¯Êı 2018.09.25
+		m_conparam.misccallback = CCamera::_NET_MISC_CALLBACK;		 // æ‚é¡¹ç»“æœå›è°ƒå‡½æ•°
+		m_conparam.gatestatuscallback = CCamera::_NET_gate_callback; // æ–°å¢é“é—¸çŠ¶æ€æ”¹å˜å›è°ƒå‡½æ•° 2018.09.25
 
 		m_conparam.UserParam = this;
 
@@ -319,7 +329,7 @@ public:
 
 		if (m_caminstance > 0)
 		{
-			AddLogtoList("Ïà»úÒÑÁ¬½Ó");
+			AddLogtoList("ç›¸æœºå·²è¿æ¥");
 			if (m_playinstance > 0)
 			{
 				EYEST_NET_STOP_PREVIEW(m_caminstance,m_playinstance);
@@ -335,13 +345,13 @@ public:
 		{
 			m_camversion = EYEST_NET_GET_DEVICETYYPE(m_caminstance);
 			char strLog[1024];
-			sprintf(strLog, "Ïà»úÁ¬½Ó³É¹¦,IP:%s ,Version:%d\n", m_ipaddrstr, m_camversion);
+			sprintf(strLog, "ç›¸æœºè¿æ¥æˆåŠŸ,IP:%s ,Version:%d\n", m_ipaddrstr, m_camversion);
 			AddLogtoList(strLog);
 		}
 		else
 		{
 			char strLog[1024];
-			sprintf(strLog, "Ïà»úÁ¬½ÓÊ§°Ü,IP:%s Çë¼ì²éÍøÂçÁ¬½Ó\n", m_ipaddrstr);
+			sprintf(strLog, "ç›¸æœºè¿æ¥å¤±è´¥,IP:%s è¯·æ£€æŸ¥ç½‘ç»œè¿æ¥\n", m_ipaddrstr);
 			AddLogtoList(strLog);
 		}
 	}
@@ -367,24 +377,24 @@ public:
 
 		if (m_caminstance < 0)
 		{
-			AddLogtoList("Ïà»úÎ´Á¬½Ó,ÇëÏÈÁ¬½ÓÏà»ú");
+			AddLogtoList("ç›¸æœºæœªè¿æ¥,è¯·å…ˆè¿æ¥ç›¸æœº");
 			return;
 		}
 		if (m_playinstance > 0)
 		{
-			AddLogtoList("ÊÓÆµÕıÔÚ²¥·Å");
+			AddLogtoList("è§†é¢‘æ­£åœ¨æ’­æ”¾");
 			return;
 		}
 
-		m_previewparam.AutoReconnect = 1; //ÊÓÆµµôÏß×Ô¶¯ÖØÁ¬
+		m_previewparam.AutoReconnect = 1; //è§†é¢‘æ‰çº¿è‡ªåŠ¨é‡è¿
 		m_previewparam.Channel = 0;
-		m_previewparam.VideoPort = 556; // RTSP¶Ë¿Ú 
-		m_previewparam.StreamType = 1;// m_videotype.GetCurSel(); // ×ÓÂëÁ÷
+		m_previewparam.VideoPort = 556; // RTSPç«¯å£ 
+		m_previewparam.StreamType = 1;// m_videotype.GetCurSel(); // å­ç æµ
 
 		m_previewparam.StatusCallback = _NET_PREVIEWSTAUSCALLBACK;
-		m_previewparam.DataCallback = _NET_PREVIEWDATACALLBACK; //±àÂëÊı¾İ»Øµ÷
-		m_previewparam.DecodeCallback = _NET_DECODEDATACALLBACK; //½âÂëBGR Êı¾İ»Øµ÷
-		m_previewparam.hWnd = hWnd;// GetDesktopWindow();;// GetDlgItem(IDC_VIDEO)->GetSafeHwnd(); // ²¥·Å´°¿Ú
+		m_previewparam.DataCallback = _NET_PREVIEWDATACALLBACK; //ç¼–ç æ•°æ®å›è°ƒ
+		m_previewparam.DecodeCallback = _NET_DECODEDATACALLBACK; //è§£ç BGR æ•°æ®å›è°ƒ
+		m_previewparam.hWnd = hWnd;// GetDesktopWindow();;// GetDlgItem(IDC_VIDEO)->GetSafeHwnd(); // æ’­æ”¾çª—å£
 		m_previewparam.UserParam = this;
 		m_previewparam.Protol = 1;//0 tcp 1:udp
 
@@ -414,15 +424,15 @@ public:
 			str += ",D3D:No";
 		}
 		AddLogtoList(str.c_str());
-		// ÓÃ»§Êı¾İ
+		// ç”¨æˆ·æ•°æ®
 		m_playinstance = EYEST_NET_START_PREVIEW(m_caminstance, &m_previewparam);
 		if (m_playinstance > 0)
 		{
-			AddLogtoList("ÊÓÆµÔ¤ÀÀ³É¹¦");
+			AddLogtoList("è§†é¢‘é¢„è§ˆæˆåŠŸ");
 		}
 		else
 		{
-			AddLogtoList("ÊÓÆµÔ¤ÀÀÊ§°Ü");
+			AddLogtoList("è§†é¢‘é¢„è§ˆå¤±è´¥");
 		}
 		/*if (m_needfocus)
 		{
@@ -454,7 +464,7 @@ public:
 		}
 
 		char log[1024];
-		sprintf(log, "LED·¢ËÍ×Ö·û´®%s--%s", ret ? "³É¹¦" : "Ê§°Ü", textData);
+		sprintf(log, "LEDå‘é€å­—ç¬¦ä¸²%s--%s", ret ? "æˆåŠŸ" : "å¤±è´¥", textData);
 
 		AddLogtoList(log);
 		return ret;
@@ -530,7 +540,7 @@ public:
 		//		char szcar[12] = { 0 };
 		//		if (SmartResult->parkspaceresult[0].spacestatus == 2)
 		//		{
-		//			str.Format("µØµã:%s IP:%s ³µÅÆ:%s %.2f  Õı³£³µÁ¾", SmartResult->cambase.DevName,
+		//			str.Format("åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f  æ­£å¸¸è½¦è¾†", SmartResult->cambase.DevName,
 		//				SmartResult->DevIP.IpV4, SmartResult->parkspaceresult[0].plateresult.platenum,
 		//				SmartResult->parkspaceresult[0].plateresult.platereliability);
 		//			strcpy(szcar, "car");
@@ -538,7 +548,7 @@ public:
 		//		}
 		//		else  if (SmartResult->parkspaceresult[0].spacestatus == 1)
 		//		{
-		//			str.Format("µØµã:%s IP:%s ³µÅÆ:%s %.2f  Òì³£³µÁ¾", SmartResult->cambase.DevName,
+		//			str.Format("åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f  å¼‚å¸¸è½¦è¾†", SmartResult->cambase.DevName,
 		//				SmartResult->DevIP.IpV4, SmartResult->parkspaceresult[0].plateresult.platenum,
 		//				SmartResult->parkspaceresult[0].plateresult.platereliability);
 		//			strcpy(szcar, "nocar");
@@ -546,7 +556,7 @@ public:
 		//		}
 		//		else
 		//		{
-		//			str.Format("µØµã:%s IP:%s ³µÅÆ:%s %.2f ", SmartResult->cambase.DevName,
+		//			str.Format("åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f ", SmartResult->cambase.DevName,
 		//				SmartResult->DevIP.IpV4, SmartResult->parkspaceresult[0].plateresult.platenum,
 		//				SmartResult->parkspaceresult[0].plateresult.platereliability);
 		//			strcpy(szcar, "uncar");
@@ -556,7 +566,7 @@ public:
 		//		CString strface;
 		//		pdlg->AddLogtoList(str);
 		//
-		//		str.Format("Õı³£:%d ·ÇÕı³£:%d", nNormalCount, nNoCarCount);
+		//		str.Format("æ­£å¸¸:%d éæ­£å¸¸:%d", nNormalCount, nNoCarCount);
 		//
 		//		pdlg->AddLogtoList(str);
 		//#if 1
@@ -606,7 +616,7 @@ public:
 	{
 		printf("%s\n", __FUNCTION__);
 
-		////ÕâÀïĞèÒª½«Í¼Ïñ¼ÓÈë¶ÓÁĞÖĞ£¬ÁíÍâ¿ªÒ»¸öÏß³Ì½âÂë»òÕß´æ´¢ ·ñÔò»áµ¼ÖÂ¶ªÍ¼
+		////è¿™é‡Œéœ€è¦å°†å›¾åƒåŠ å…¥é˜Ÿåˆ—ä¸­ï¼Œå¦å¤–å¼€ä¸€ä¸ªçº¿ç¨‹è§£ç æˆ–è€…å­˜å‚¨ å¦åˆ™ä¼šå¯¼è‡´ä¸¢å›¾
 
 		//CConfigToolDlg *pdlg = (CConfigToolDlg*)UserParam;
 		//vector<char>data(*nLength);
@@ -633,7 +643,7 @@ public:
 		//pdlg->DrawMatToHDC(show, IDC_PIC);
 		//char szcartype[64] = { 0 };
 
-		//str.Format("µØµã:%s IP:%s ³µÅÆ:%s %.2f", SmartResultEx->DevName, SmartResultEx->camerIp, SmartResultEx->platenum, SmartResultEx->realbility);
+		//str.Format("åœ°ç‚¹:%s IP:%s è½¦ç‰Œ:%s %.2f", SmartResultEx->DevName, SmartResultEx->camerIp, SmartResultEx->platenum, SmartResultEx->realbility);
 
 		//if (SmartResultEx->snapmode == 2)
 		//{
@@ -643,7 +653,7 @@ public:
 		//{
 		//	str += "    [M]";
 		//	char  szvoice[64] = { 0 };
-		//	sprintf(szvoice, "%s, %s,»¶Ó­¹âÁÙ", SmartResultEx->platenum, szcartype);
+		//	sprintf(szvoice, "%s, %s,æ¬¢è¿å…‰ä¸´", SmartResultEx->platenum, szcartype);
 		//	EYEST_NET_AUDIO_CONTROL(SmartResultEx->camerIp, 37890, szvoice, strlen(szvoice));
 
 		//}
@@ -685,7 +695,7 @@ public:
 		//fclose(pf);
 	}
 
-	//offline ¼ÇÂ¼
+	//offline è®°å½•
 	typedef struct
 	{
 		unsigned char szCamId[32];
@@ -696,10 +706,10 @@ public:
 		int mode; //
 	} CarRecord;
 
-	//³ö³¡ºóÁ÷¼ÇÂ¼
+	//å‡ºåœºåæµè®°å½•
 	typedef struct
 	{
-		int ids; // ±àºÅ
+		int ids; // ç¼–å·
 		float fees;
 		CarRecord g_inrecord;
 		CarRecord g_outrecord;
@@ -714,7 +724,7 @@ public:
 
 		int ret = EYEST_NET_AUDIO_CONTROL(m_ipaddrstr, 37890, audioData, dataLen);
 		char log[1024];
-		sprintf(log, "·¢ËÍÓïÒô%s--%s", ret ? "³É¹¦" : "Ê§°Ü", audioData);
+		sprintf(log, "å‘é€è¯­éŸ³%s--%s", ret ? "æˆåŠŸ" : "å¤±è´¥", audioData);
 		AddLogtoList(log);
 	}
 	int set_3A_PARAM_V1(NET_DEV_CAMERAPARAM_V1 &paramV1)
@@ -761,7 +771,7 @@ public:
 		if (m_caminstance < 0)
 		{
 			char str[1024];
-			sprintf(str, "Ïà»úÎ´Á¬½Ó,ÇëÏÈÁ¬½ÓÏà»ú");
+			sprintf(str, "ç›¸æœºæœªè¿æ¥,è¯·å…ˆè¿æ¥ç›¸æœº");
 			AddLogtoList(str);
 			return false;
 		}

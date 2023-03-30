@@ -10,6 +10,7 @@ extern char* __progname;
 #include "spdlog/async.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/rotating_file_sink.h"
+#include "spdlog/sinks/daily_file_sink.h"
 
 namespace SimplyLive
 {
@@ -53,7 +54,8 @@ namespace SimplyLive
 		{
 			static auto tp = std::make_shared<spdlog::details::thread_pool>(8192, 1);
 #ifdef _WIN32
-			auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(newPath, logConfigToUse->maxLogFileSizeMB * 1024 * 1024, logConfigToUse->maxNumberOfRollingFile);
+			auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(newPath,24,59,true,100);
+
 #else
 			auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(getAString(newPath), logConfigToUse->maxLogFileSizeMB * 1024 * 1024, logConfigToUse->maxNumberOfRollingFile);
 #endif
