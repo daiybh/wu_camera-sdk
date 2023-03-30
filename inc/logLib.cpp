@@ -54,7 +54,7 @@ namespace SimplyLive
 		{
 			static auto tp = std::make_shared<spdlog::details::thread_pool>(8192, 1);
 #ifdef _WIN32
-			auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(newPath,24,59,true,100);
+			auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(newPath,23,58,true,100);
 
 #else
 			auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(getAString(newPath), logConfigToUse->maxLogFileSizeMB * 1024 * 1024, logConfigToUse->maxNumberOfRollingFile);
