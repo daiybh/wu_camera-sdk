@@ -25,20 +25,20 @@ extern "C" {
 #pragma pack(push, 4)
 
 #include "windows.h"
-	//È«¾Öºê¶¨Òå
+	//å…¨å±€å®å®šä¹‰
 	//-------------------------------------------------------------------
-#define NET_DEV_DEVICE_NAME_LEN   32  //Éè±¸Ãû×Ö³¤¶È
-#define NET_DEV_IPV4_ADDR_LEN     16  //IPV4µØÖ·³¤¶È
-#define NET_DEV_IPV6_ADDR_LEN     48  //IPV6µØÖ·³¤¶È
-#define NET_DEV_MAC_ADDR_LEN      20  //MACµØÖ·³¤¶È
+#define NET_DEV_DEVICE_NAME_LEN   32  //è®¾å¤‡åå­—é•¿åº¦
+#define NET_DEV_IPV4_ADDR_LEN     16  //IPV4åœ°å€é•¿åº¦
+#define NET_DEV_IPV6_ADDR_LEN     48  //IPV6åœ°å€é•¿åº¦
+#define NET_DEV_MAC_ADDR_LEN      20  //MACåœ°å€é•¿åº¦
 
-#define NET_DEV_MAX_USER_NUM      16  //×î´óÓÃ»§¸öÊı
-#define NET_DEV_USERNAME_LEN      32  //ÓÃ»§Ãû³¤¶È
-#define NET_DEV_PASSWORD_LEN      16  //ÃÜÂë³¤¶È
+#define NET_DEV_MAX_USER_NUM      16  //æœ€å¤§ç”¨æˆ·ä¸ªæ•°
+#define NET_DEV_USERNAME_LEN      32  //ç”¨æˆ·åé•¿åº¦
+#define NET_DEV_PASSWORD_LEN      16  //å¯†ç é•¿åº¦
 
-#define NET_DEV_MAX_STREAM_NUM    3   //×î´óÂëÁ÷¸öÊı
-#define  NET_DEV_MAX_ALARM_IN_NUM   1 // ±¨¾¯ÊäÈë
-#define NET_DEV_MAX_ALARM_OUT_NUM  1  //±¨¾¯Êä³ö
+#define NET_DEV_MAX_STREAM_NUM    3   //æœ€å¤§ç æµä¸ªæ•°
+#define  NET_DEV_MAX_ALARM_IN_NUM   1 // æŠ¥è­¦è¾“å…¥
+#define NET_DEV_MAX_ALARM_OUT_NUM  1  //æŠ¥è­¦è¾“å‡º
 
 
 #define  NET_DEV_MAX_ETH_NICS        1 
@@ -52,21 +52,21 @@ extern "C" {
 #define NET_DEV_MAX_LOG_PAGE_SIZE  1024
 #define  NET_DEV_OSD_TEXT_LEN     128
 #define  NET_DEV_OSD_TEXT_NUM    8
-	//È«¾Ö´íÎóÂë¶¨Òå
+	//å…¨å±€é”™è¯¯ç å®šä¹‰
 	//-------------------------------------------------------------------
 
 
-#define NET_DEV_ERROR_SUCCESS              0   //Ã»ÓĞ´íÎó
-#define NET_DEV_ERROR_TIMEOUT              1   //²Ù×÷³¬Ê±
-#define NET_DEV_ERROR_FAILED               2   //²Ù×÷Ê§°Ü
-#define NET_DEV_ERROR_PASSWORD             3   //ÓÃ»§ÃûÃÜÂë´íÎó
-#define NET_DEV_ERROR_MAX_USERNUM          4  //Éè±¸¶ËÓÃ»§Êı´ïµ½×î´ó
-#define NET_DEV_ERROR_NOENOUGHPRI          5  //È¨ÏŞ²»×ã
+#define NET_DEV_ERROR_SUCCESS              0   //æ²¡æœ‰é”™è¯¯
+#define NET_DEV_ERROR_TIMEOUT              1   //æ“ä½œè¶…æ—¶
+#define NET_DEV_ERROR_FAILED               2   //æ“ä½œå¤±è´¥
+#define NET_DEV_ERROR_PASSWORD             3   //ç”¨æˆ·åå¯†ç é”™è¯¯
+#define NET_DEV_ERROR_MAX_USERNUM          4  //è®¾å¤‡ç«¯ç”¨æˆ·æ•°è¾¾åˆ°æœ€å¤§
+#define NET_DEV_ERROR_NOENOUGHPRI          5  //æƒé™ä¸è¶³
 
 
-	//È«¾ÖÃ¶¾Ù¶¨Òå
+	//å…¨å±€æšä¸¾å®šä¹‰
 
-	// Éè±¸ÀàĞÍ
+	// è®¾å¤‡ç±»å‹
 	typedef enum _NET_DEV_TYPE
 	{
 		NET_DEV_TYPE_IPC  = 0x00,
@@ -76,7 +76,7 @@ extern "C" {
 		NET_DEV_TYPE_BUTT
 	}NET_DEV_TYPE;
 
-	//´«ÊäĞ­Òé
+	//ä¼ è¾“åè®®
 	typedef enum _NET_DEV_TRANSPROTOL
 	{
 		NET_DEV_TRANS_TCP=0,
@@ -92,36 +92,36 @@ typedef struct _NET_DEV_IPADDR
 
 
 
-//¿ØÖÆ
+//æ§åˆ¶
 //------------------------------------------------------------
 
 
 typedef enum _EYEST_PARAM_CMD_E_
 {
-	EYEST_STABLE_PARAM = 0x00,	// 0Éè±¸³ö³§ĞÅÏ¢
-	EYEST_BASEPARAM    	 = 0x01,	// 1Éè±¸»ù±¾ĞÅÏ¢
-	EYEST_NET_PARAM,          	// 2Éè±¸ÍøÂçÅäÖÃ
-	EYEST_VIDEO_PARAM,			// 3Éè±¸ÊÓÆµ²ÎÊı 
-	EYEST_VMAIN_PARAM,			// 4 Éè±¸ÊÓÆµÖ÷ÂëÁ÷²ÎÊı
-	EYEST_VSUB_PARAM,		    	// 5 Éè±¸ÊÓÆµ´ÎÂëÁ÷²ÎÊı
-	EYEST_VTHREE_PARAM,       	// 6Éè±¸µÚÈıÂëÁ÷²ÎÊı
-	EYEST_VCAP_PARAM,		    	// 7 Éè±¸ÊÓÆµ×¥ÅÄ²ÎÊı
-	EYEST_IMA_PARAM,		    	// 8 Éè±¸Í¼Ïñ²ÎÊı
-	EYEST_3A_PARAM,		    	// 9 Éè±¸3A²ÎÊı
-	EYEST_USR_PARAM,		    	// 10 ÓÃ»§²ÎÊıÅäÖÃ
-	EYEST_PF_PARAM,           	// 11 Æ½Ì¨ĞÅÏ¢
-	EYEST_NTP_PARAM,		    	// 12ntp²ÎÊıÅäÖÃ
+	EYEST_STABLE_PARAM = 0x00,	// 0è®¾å¤‡å‡ºå‚ä¿¡æ¯
+	EYEST_BASEPARAM    	 = 0x01,	// 1è®¾å¤‡åŸºæœ¬ä¿¡æ¯
+	EYEST_NET_PARAM,          	// 2è®¾å¤‡ç½‘ç»œé…ç½®
+	EYEST_VIDEO_PARAM,			// 3è®¾å¤‡è§†é¢‘å‚æ•° 
+	EYEST_VMAIN_PARAM,			// 4 è®¾å¤‡è§†é¢‘ä¸»ç æµå‚æ•°
+	EYEST_VSUB_PARAM,		    	// 5 è®¾å¤‡è§†é¢‘æ¬¡ç æµå‚æ•°
+	EYEST_VTHREE_PARAM,       	// 6è®¾å¤‡ç¬¬ä¸‰ç æµå‚æ•°
+	EYEST_VCAP_PARAM,		    	// 7 è®¾å¤‡è§†é¢‘æŠ“æ‹å‚æ•°
+	EYEST_IMA_PARAM,		    	// 8 è®¾å¤‡å›¾åƒå‚æ•°
+	EYEST_3A_PARAM,		    	// 9 è®¾å¤‡3Aå‚æ•°
+	EYEST_USR_PARAM,		    	// 10 ç”¨æˆ·å‚æ•°é…ç½®
+	EYEST_PF_PARAM,           	// 11 å¹³å°ä¿¡æ¯
+	EYEST_NTP_PARAM,		    	// 12ntpå‚æ•°é…ç½®
 	EYEST_PLATE_PARAM  ,               //13 plate 
 	EYEST_CAR_PARAM  ,               //14 CAR
 	EYEST_VD_PARAM  ,               //15 detect
-	EYEST_WORKMODE_PARAM, //16  ¹¤×÷·½Ê½
+	EYEST_WORKMODE_PARAM, //16  å·¥ä½œæ–¹å¼
 
 	  EYEST_VIP_PARAM  ,             // 17 VIP INFO
 
 	  EYEST_PARKSPACE_PARAM,
-	  EYEST_SERIAL_CONTROL,//´®¿Ú¿ØÖÆ
-	  EYEST_CHECK_TIME,  //½ÃÕıÊ±¼ä
-	  EYEST_SERIAL_INFO,//´®¿ÚÅäÖÃ
+	  EYEST_SERIAL_CONTROL,//ä¸²å£æ§åˆ¶
+	  EYEST_CHECK_TIME,  //çŸ«æ­£æ—¶é—´
+	  EYEST_SERIAL_INFO,//ä¸²å£é…ç½®
 
      EYEST_LIGHT_PARAM ,
 
@@ -134,19 +134,19 @@ typedef enum _EYEST_PARAM_CMD_E_
 }EYEST_PARAM_CMD_E;
 
 
-// Éè±¸ÍøÂç²ÎÊı 
+// è®¾å¤‡ç½‘ç»œå‚æ•° 
 typedef struct _NET_DEV_CFGNET
 {
-	NET_DEV_IPADDR IPAddr;		//Éè±¸IP
-	NET_DEV_IPADDR Netmask;		//×ÓÍøÑÚÂë
-	NET_DEV_IPADDR Gateway;		//Íø¹Ø
-	char MACAddr[NET_DEV_MAC_ADDR_LEN];		//MACµØÖ·
-	unsigned char  EnableDHCP;		//ÊÇ·ñÆôÓÃDHCP
-	unsigned char  EnableAutoDNS;		//ÊÇ·ñÔÊĞí×Ô¶¯»ñÈ¡DNS
-	unsigned char  Mtu;				//MTU´óĞ¡Ä¬ÈÏ 1500
-	unsigned char  Interface;		//ÍøÂç½Ó¿Ú 1-10MBase-T 2-10MBase-TÈ«Ë«¹¤ 3-100MBase-TX 4-100MÈ«Ë«¹¤ 5-10M/100M/1000M×ÔÊÊÓ¦
-	NET_DEV_IPADDR DNS1;		//Ö÷DNS·şÎñÆ÷µØÖ·
-	NET_DEV_IPADDR DNS2;		//´ÎDNS·şÎñÆ÷µØÖ·
+	NET_DEV_IPADDR IPAddr;		//è®¾å¤‡IP
+	NET_DEV_IPADDR Netmask;		//å­ç½‘æ©ç 
+	NET_DEV_IPADDR Gateway;		//ç½‘å…³
+	char MACAddr[NET_DEV_MAC_ADDR_LEN];		//MACåœ°å€
+	unsigned char  EnableDHCP;		//æ˜¯å¦å¯ç”¨DHCP
+	unsigned char  EnableAutoDNS;		//æ˜¯å¦å…è®¸è‡ªåŠ¨è·å–DNS
+	unsigned char  Mtu;				//MTUå¤§å°é»˜è®¤ 1500
+	unsigned char  Interface;		//ç½‘ç»œæ¥å£ 1-10MBase-T 2-10MBase-Tå…¨åŒå·¥ 3-100MBase-TX 4-100Må…¨åŒå·¥ 5-10M/100M/1000Mè‡ªé€‚åº”
+	NET_DEV_IPADDR DNS1;		//ä¸»DNSæœåŠ¡å™¨åœ°å€
+	NET_DEV_IPADDR DNS2;		//æ¬¡DNSæœåŠ¡å™¨åœ°å€
 }NET_DEV_CFG_NET;
 
 
@@ -154,24 +154,24 @@ typedef struct _NET_DEV_CFGNET
  
 typedef struct _NET_DEV_ETHCFG
 {
-	unsigned char  NICCount;		//Éè±¸Ö§³ÖµÄÒÔÌ«Íø¿¨¸öÊı(Ö»¶Á)
-	unsigned char  Res[3];		//±£Áô
+	unsigned char  NICCount;		//è®¾å¤‡æ”¯æŒçš„ä»¥å¤ªç½‘å¡ä¸ªæ•°(åªè¯»)
+	unsigned char  Res[3];		//ä¿ç•™
 	NET_DEV_CFG_NET EthNICs[NET_DEV_MAX_ETH_NICS];
 }NET_DEV_ETHCFG;
 
 typedef  struct _NET_DEV_SERVICECFG
 {
-	int  MsgPort;		//Éè±¸ĞÅÁî¶Ë¿Ú
-	int RtspPort;		//Éè±¸RTSP¶Ë¿Ú
-	int HttpPort;		//Éè±¸HTTP¶Ë¿Ú
-	int RtmpPort;		//Éè±¸RTMP¶Ë¿Ú
+	int  MsgPort;		//è®¾å¤‡ä¿¡ä»¤ç«¯å£
+	int RtspPort;		//è®¾å¤‡RTSPç«¯å£
+	int HttpPort;		//è®¾å¤‡HTTPç«¯å£
+	int RtmpPort;		//è®¾å¤‡RTMPç«¯å£
 }NET_DEV_SERVICECFG;
 
 
 
 //===================================================================
 
-//ËÑË÷Éè±¸ĞÅÏ¢
+//æœç´¢è®¾å¤‡ä¿¡æ¯
 //-------------------------------------------------------------------
 
 
@@ -180,9 +180,9 @@ typedef struct _NET_DEV_BROARDSEARCHINFO
 	long    timeflag ;
 	char  SoftwareVer[NET_DEV_VERSION_LEN];
 	char  HardwareVer[NET_DEV_VERSION_LEN];
-	char  SerialNo[NET_DEV_SERIAL_NO_LEN];		// ĞòÁĞºÅ
+	char  SerialNo[NET_DEV_SERIAL_NO_LEN];		// åºåˆ—å·
 	unsigned char  DevType;		// NET_DEV_TYPE
-	char  ProductName[NET_DEV_DEVICE_NAME_LEN];		//²úÆ·ĞÍºÅ
+	char  ProductName[NET_DEV_DEVICE_NAME_LEN];		//äº§å“å‹å·
 	char  DeviceName[NET_DEV_DEVICE_NAME_LEN] ;
 	char  DeviceID[NET_DEV_DEVICE_NAME_LEN] ;
 	NET_DEV_ETHCFG EthCfg;
@@ -192,7 +192,7 @@ typedef struct _NET_DEV_BROARDSEARCHINFO
 
 
 
-//ËÑË÷ĞŞ¸ÄÍøÂçÅäÖÃ
+//æœç´¢ä¿®æ”¹ç½‘ç»œé…ç½®
 //-------------------------------------------------------------------
  
 typedef struct _NET_DEV_MODIFY_NET
@@ -209,52 +209,52 @@ typedef struct _NET_DEV_MODIFY_NET
 
 
 //===================================================================
-//Éè±¸ÄÜÁ¦¼¯ĞÅÏ¢
+//è®¾å¤‡èƒ½åŠ›é›†ä¿¡æ¯
 //-------------------------------------------------------------------
 
 typedef enum _NET_DEV_SYS_CAP
 {
-	DEV_SYS_CAP_PTZ      = 0,   // ÔÆÌ¨
+	DEV_SYS_CAP_PTZ      = 0,   // äº‘å°
 	DEV_SYS_CAP_WIFI     = 1,   // WIFI
 	DEV_SYS_CAP_3G       = 2,   // 3G
-	DEV_SYS_CAP_IVS      = 3,  // ÖÇÄÜ·ÖÎö
-	DEV_SYS_CAP_IR       = 4   // ºìÍâ
+	DEV_SYS_CAP_IVS      = 3,  // æ™ºèƒ½åˆ†æ
+	DEV_SYS_CAP_IR       = 4   // çº¢å¤–
 }NET_DEV_SYS_CAP;
 
 
-// ÖÇÄÜ·ÖÎöÄÜÁ¦
+// æ™ºèƒ½åˆ†æèƒ½åŠ›
 typedef enum _NET_DEV_IVS_CAP
 {
-	NET_DEV_IVS_BRIGHT_ABMNL_CAP        = 1,  // ÁÁ¶ÈÒì³£
-	NET_DEV_IVS_CLARITY_ABMNL_CAP       = 2,  // ÇåÎú¶ÈÒì³£
-	NET_DEV_IVS_NOISE_ABMNL_CAP         = 3,  // ÔëÉùÒì³£
-	NET_DEV_IVS_COLOR_ABMNL_CAP         = 4,  // ÑÕÉ«Òì³£
-	NET_DEV_IVS_SCENE_CHANGE_CAP        = 5,  // ³¡¾°±ä»»,ÈËÎª¸ÉÈÅ
-	NET_DEV_IVS_TRIP_WIRE_CAP           = 6,  // µ¥°íÏß
-	NET_DEV_IVS_DOUBLE_TRIP_WIRE_CAP    = 7,  // Ë«°íÏß
-	NET_DEV_IVS_PERI_METER_CAP          = 8,  // ¾¯½äÇø
-	NET_DEV_IVS_LOITER_CAP              = 9,  // ÅÇ»²¼ì²â
-	NET_DEV_IVS_LEFT_CAP                = 10, // ÎïÆ·ÒÅÁô
-	NET_DEV_IVS_TAKE_CAP                = 11, // ÎïÆ·¶ªÊ§
-	NET_DEV_IVS_TAKE_PLATEREC         = 12, // ³µÅÆÊ¶±ğ
-	NET_DEV_IVS_CARREC         = 13, // ³µÁ¾Ê¶±ğ
-	NET_DEV_IVS_CARTRACK         = 14, // ³µÁ¾¸ú×Ù
+	NET_DEV_IVS_BRIGHT_ABMNL_CAP        = 1,  // äº®åº¦å¼‚å¸¸
+	NET_DEV_IVS_CLARITY_ABMNL_CAP       = 2,  // æ¸…æ™°åº¦å¼‚å¸¸
+	NET_DEV_IVS_NOISE_ABMNL_CAP         = 3,  // å™ªå£°å¼‚å¸¸
+	NET_DEV_IVS_COLOR_ABMNL_CAP         = 4,  // é¢œè‰²å¼‚å¸¸
+	NET_DEV_IVS_SCENE_CHANGE_CAP        = 5,  // åœºæ™¯å˜æ¢,äººä¸ºå¹²æ‰°
+	NET_DEV_IVS_TRIP_WIRE_CAP           = 6,  // å•ç»Šçº¿
+	NET_DEV_IVS_DOUBLE_TRIP_WIRE_CAP    = 7,  // åŒç»Šçº¿
+	NET_DEV_IVS_PERI_METER_CAP          = 8,  // è­¦æˆ’åŒº
+	NET_DEV_IVS_LOITER_CAP              = 9,  // å¾˜å¾Šæ£€æµ‹
+	NET_DEV_IVS_LEFT_CAP                = 10, // ç‰©å“é—ç•™
+	NET_DEV_IVS_TAKE_CAP                = 11, // ç‰©å“ä¸¢å¤±
+	NET_DEV_IVS_TAKE_PLATEREC         = 12, // è½¦ç‰Œè¯†åˆ«
+	NET_DEV_IVS_CARREC         = 13, // è½¦è¾†è¯†åˆ«
+	NET_DEV_IVS_CARTRACK         = 14, // è½¦è¾†è·Ÿè¸ª
 }NET_DEV_IVS_CAP;
 
 
 
 
 
- //Í¨µÀÄÜÁ¦
+ //é€šé“èƒ½åŠ›
 typedef struct _NET_DEV_CH_CAPABILITIES
 {
-	unsigned char  VideoEncType;		// Ö§³ÖµÄÊÓÆµ±àÂë¼¯ NET_DEV_VENC_TYPE
-	unsigned char  AudioEncType;		// Ö§³ÖµÄÒôÆµ±àÂë¼¯ NET_DEV_AENC_TYPE
-	unsigned char  OsdCount;		// OSD¸öÊı
-	unsigned char  LostAlarm;		// ÊÇ·ñÖ§³ÖÊÓÆµ¶ªÊ§±¨¾¯
-	unsigned char  StreamCount;		// ÂëÁ÷¸öÊı
-	int   Resolution[NET_DEV_MAX_STREAM_NUM];		//Ö§³ÖµÄ·Ö±æÂÊ¼¯ ÑÚÂë NET_DEV_IMAGERESOLUTION
-	int  FPS[NET_DEV_MAX_STREAM_NUM];		//Ö§³ÖµÄ×î´óÖ¡ÂÊ¼¯ ÊıÖµ±íÊ¾Ö§³ÖµÄ×î´óÖ¡ÂÊÖµ
+	unsigned char  VideoEncType;		// æ”¯æŒçš„è§†é¢‘ç¼–ç é›† NET_DEV_VENC_TYPE
+	unsigned char  AudioEncType;		// æ”¯æŒçš„éŸ³é¢‘ç¼–ç é›† NET_DEV_AENC_TYPE
+	unsigned char  OsdCount;		// OSDä¸ªæ•°
+	unsigned char  LostAlarm;		// æ˜¯å¦æ”¯æŒè§†é¢‘ä¸¢å¤±æŠ¥è­¦
+	unsigned char  StreamCount;		// ç æµä¸ªæ•°
+	int   Resolution[NET_DEV_MAX_STREAM_NUM];		//æ”¯æŒçš„åˆ†è¾¨ç‡é›† æ©ç  NET_DEV_IMAGERESOLUTION
+	int  FPS[NET_DEV_MAX_STREAM_NUM];		//æ”¯æŒçš„æœ€å¤§å¸§ç‡é›† æ•°å€¼è¡¨ç¤ºæ”¯æŒçš„æœ€å¤§å¸§ç‡å€¼
 	
 }NET_DEV_CH_CAPABILITIES;
 
@@ -262,42 +262,42 @@ typedef struct _NET_DEV_CH_CAPABILITIES
 typedef struct _NET_DEV_CAPABILITIES
 {
 	/*------- system -----*/
-	char ProductName[NET_DEV_DEVICE_NAME_LEN];//²úÆ·ĞÍºÅ
-	unsigned char  DevType;		// Éè±¸ÀàĞÍ NET_DEV_TYPE
-	unsigned char  EncChnCount;		// ±àÂëÍ¨µÀ¸öÊı
-	unsigned char  DecChnCount;		// ½âÂëÍ¨µÀ¸öÊı
-	unsigned char  AudioInCount;		// ÓïÒôÊäÈë¸öÊı
-	unsigned char  AudioOutCount;		// ÓïÒôÊä³ö¸öÊı
-	unsigned char  AlarmInCount;		// ±¨¾¯ÊäÈë¸öÊı
-	unsigned char  AlarmOutCount;		// ±¨¾¯Êä³ö¸öÊı
-	unsigned char  Rs232Count;		// RS232´®¿Ú¸öÊı
-	unsigned char  Rs485Count;		// RS485´®¿Ú¸öÊı
-	unsigned char  EthCount;		// ÍøÂç¿Ú¸öÊı
-	unsigned char  DiskCount;		// Ó²ÅÌ¿Ú¸öÊı
-	unsigned char  VoutCount;		// ÊÓÆµÊä³ö¿ÚµÄ¸öÊı
-	unsigned char  UsbCount;		// USB¿ÚµÄ¸öÊı
-	int   IvsCap;		// ÖÇÄÜ·ÖÎöÄÜÁ¦ NET_DEV_IVS_CAP
-	int Res1[2];		// ±£Áô
+	char ProductName[NET_DEV_DEVICE_NAME_LEN];//äº§å“å‹å·
+	unsigned char  DevType;		// è®¾å¤‡ç±»å‹ NET_DEV_TYPE
+	unsigned char  EncChnCount;		// ç¼–ç é€šé“ä¸ªæ•°
+	unsigned char  DecChnCount;		// è§£ç é€šé“ä¸ªæ•°
+	unsigned char  AudioInCount;		// è¯­éŸ³è¾“å…¥ä¸ªæ•°
+	unsigned char  AudioOutCount;		// è¯­éŸ³è¾“å‡ºä¸ªæ•°
+	unsigned char  AlarmInCount;		// æŠ¥è­¦è¾“å…¥ä¸ªæ•°
+	unsigned char  AlarmOutCount;		// æŠ¥è­¦è¾“å‡ºä¸ªæ•°
+	unsigned char  Rs232Count;		// RS232ä¸²å£ä¸ªæ•°
+	unsigned char  Rs485Count;		// RS485ä¸²å£ä¸ªæ•°
+	unsigned char  EthCount;		// ç½‘ç»œå£ä¸ªæ•°
+	unsigned char  DiskCount;		// ç¡¬ç›˜å£ä¸ªæ•°
+	unsigned char  VoutCount;		// è§†é¢‘è¾“å‡ºå£çš„ä¸ªæ•°
+	unsigned char  UsbCount;		// USBå£çš„ä¸ªæ•°
+	int   IvsCap;		// æ™ºèƒ½åˆ†æèƒ½åŠ› NET_DEV_IVS_CAP
+	int Res1[2];		// ä¿ç•™
 	/*--------------------*/
-	NET_DEV_CH_CAPABILITIES ChannelCap;		//Í¨µÀÄÜÁ¦
+	NET_DEV_CH_CAPABILITIES ChannelCap;		//é€šé“èƒ½åŠ›
 }NET_DEV_CAPABILITIES;
 
 
 //===================================================================
-//Éè±¸°æ±¾ĞÅÏ¢
+//è®¾å¤‡ç‰ˆæœ¬ä¿¡æ¯
 //===================================================================
 
 
 typedef struct _NET_DEV_VERSION
 {
-	int DevType;		// Éè±¸ÀàĞÍ£º NET_DEV_TYPE
-	char ProductName[NET_DEV_DEVICE_NAME_LEN];		//²úÆ·ĞÍºÅ
-	char SerialNo[NET_DEV_SERIAL_NO_LEN];		// ĞòÁĞºÅ
-	char SoftwareVer[NET_DEV_VERSION_LEN];		// Èí¼ş°æ±¾ºÅ
-	char SoftwareDate[NET_DEV_DATE_LEN];		// Èí¼şÉú³ÉÈÕÆÚ
-	char DspSoftwareVer[NET_DEV_VERSION_LEN];		// DSPÈí¼ş°æ±¾
-	char DspSoftwareDate[NET_DEV_DATE_LEN];		// DSPÈí¼şÉú³ÉÈÕÆÚ
-	char HardwareVer[NET_DEV_VERSION_LEN];		// Ó²¼ş°æ±¾
+	int DevType;		// è®¾å¤‡ç±»å‹ï¼š NET_DEV_TYPE
+	char ProductName[NET_DEV_DEVICE_NAME_LEN];		//äº§å“å‹å·
+	char SerialNo[NET_DEV_SERIAL_NO_LEN];		// åºåˆ—å·
+	char SoftwareVer[NET_DEV_VERSION_LEN];		// è½¯ä»¶ç‰ˆæœ¬å·
+	char SoftwareDate[NET_DEV_DATE_LEN];		// è½¯ä»¶ç”Ÿæˆæ—¥æœŸ
+	char DspSoftwareVer[NET_DEV_VERSION_LEN];		// DSPè½¯ä»¶ç‰ˆæœ¬
+	char DspSoftwareDate[NET_DEV_DATE_LEN];		// DSPè½¯ä»¶ç”Ÿæˆæ—¥æœŸ
+	char HardwareVer[NET_DEV_VERSION_LEN];		// ç¡¬ä»¶ç‰ˆæœ¬
 
 }NET_DEV_VERSION;
 
@@ -307,49 +307,49 @@ typedef struct _NET_DEV_VERSION
 
 typedef struct _NET_DEV_CMS_CFG
 {
-	int   Enable;		//ÊÇ·ñ¿ªÆô
-	char  PuId[NET_DEV_ID_LEN];		//Éè±¸ID
-	char  PuAC[NET_DEV_AUTHORIZECODE_LEN];		//Éè±¸ÊÚÈ¨Âë
-	NET_DEV_IPADDR CmsIP;		//·şÎñÆ÷IP
-	NET_DEV_IPADDR MdsIP;		//Á÷Ã½ÌåIP
-	unsigned short  CmsPort;		//·şÎñÆ÷¶Ë¿Ú
-	unsigned short  MdsPort;		//Á÷Ã½Ìå¶Ë¿Ú
-	unsigned short  State;		//Á¬½Ó×´Ì¬£¬1-CMSÒÑÁ¬½Ó  0-Î´Á¬½Ó
+	int   Enable;		//æ˜¯å¦å¼€å¯
+	char  PuId[NET_DEV_ID_LEN];		//è®¾å¤‡ID
+	char  PuAC[NET_DEV_AUTHORIZECODE_LEN];		//è®¾å¤‡æˆæƒç 
+	NET_DEV_IPADDR CmsIP;		//æœåŠ¡å™¨IP
+	NET_DEV_IPADDR MdsIP;		//æµåª’ä½“IP
+	unsigned short  CmsPort;		//æœåŠ¡å™¨ç«¯å£
+	unsigned short  MdsPort;		//æµåª’ä½“ç«¯å£
+	unsigned short  State;		//è¿æ¥çŠ¶æ€ï¼Œ1-CMSå·²è¿æ¥  0-æœªè¿æ¥
 }NET_DEV_CMS_CFG;
 
 
 
 //===================================================================
-//Éè±¸Ê±¼äÅäÖÃ
+//è®¾å¤‡æ—¶é—´é…ç½®
 //===================================================================
 
 
 typedef struct _NET_DEV_TIME_EX
 {
-	int   Zone;		//Ê±Çø
-	int  Year;		//Äê
-	unsigned char  Month;		//ÔÂ
-	unsigned char  Day;		//ÈÕ
-	 unsigned char  Week;		//ĞÇÆÚ
-	unsigned char  Hour;		//Ê±
-	unsigned char  Minute;		//·Ö
-	unsigned char  Second;		//Ãë
-	int   MilliSec;		//ºÁÃë
+	int   Zone;		//æ—¶åŒº
+	int  Year;		//å¹´
+	unsigned char  Month;		//æœˆ
+	unsigned char  Day;		//æ—¥
+	 unsigned char  Week;		//æ˜ŸæœŸ
+	unsigned char  Hour;		//æ—¶
+	unsigned char  Minute;		//åˆ†
+	unsigned char  Second;		//ç§’
+	int   MilliSec;		//æ¯«ç§’
 }NET_DEV_TIME_EX;
 
 
 ////// old version 
 typedef struct
 {
-	unsigned long  Zone;		//Ê±Çø
-	unsigned short  Year;		//Äê
-	unsigned char  Month;		//ÔÂ
-	unsigned char  Day;		//ÈÕ
+	unsigned long  Zone;		//æ—¶åŒº
+	unsigned short  Year;		//å¹´
+	unsigned char  Month;		//æœˆ
+	unsigned char  Day;		//æ—¥
 	unsigned char Week ;
-	unsigned char  Hour;		//Ê±
-	unsigned char  Minute;		//·Ö
-	unsigned char  Second;		//Ãë
-	unsigned long  MilliSec;		//ºÁÃë
+	unsigned char  Hour;		//æ—¶
+	unsigned char  Minute;		//åˆ†
+	unsigned char  Second;		//ç§’
+	unsigned long  MilliSec;		//æ¯«ç§’
 }NET_DEV_TIME_EX_V1;
 
 
@@ -358,19 +358,19 @@ typedef struct
  
 typedef struct _NET_DEV_NTPCFG
 {
-	int   EnableNTP;		//ÊÇ·ñ¿ªÆô: 0£º²»¿ªÆô£¬1£ºNTP¶ÔÊ±£¬2£ºCMS¶ÔÊ±
-	int  EnableDST;		//ÏÄÁîÊ±Ê¹ÄÜ£»1£ºÆôÓÃ£¬0£º²»ÆôÓÃ
-	NET_DEV_IPADDR NTPServer;		//NTP·şÎñÆ÷
-	int  TimeZone;		//Ê±Çø
-	int UpdateInterval;		//¶ÔÊ±¼ä¸ô
+	int   EnableNTP;		//æ˜¯å¦å¼€å¯: 0ï¼šä¸å¼€å¯ï¼Œ1ï¼šNTPå¯¹æ—¶ï¼Œ2ï¼šCMSå¯¹æ—¶
+	int  EnableDST;		//å¤ä»¤æ—¶ä½¿èƒ½ï¼›1ï¼šå¯ç”¨ï¼Œ0ï¼šä¸å¯ç”¨
+	NET_DEV_IPADDR NTPServer;		//NTPæœåŠ¡å™¨
+	int  TimeZone;		//æ—¶åŒº
+	int UpdateInterval;		//å¯¹æ—¶é—´éš”
 }NET_DEV_NTPCFG;
 
 
 
 //===================================================================
-//±àÂë²ÎÊı
+//ç¼–ç å‚æ•°
 //===================================================================
-//ÂëÁ÷ÀàĞÍ
+//ç æµç±»å‹
 typedef enum _NET_DEV_STREAM_TYPE
 {
 	NET_DEV_STREAM_MAIN = 0,
@@ -378,7 +378,7 @@ typedef enum _NET_DEV_STREAM_TYPE
 	NET_DEV_STREAM_THIRD
 }NET_DEV_STREAM_TYPE;
 
-//ÊÓÆµ±àÂëÀàĞÍ
+//è§†é¢‘ç¼–ç ç±»å‹
 typedef enum _NET_DEV_VENC_TYPE
 {
 	NET_DEV_VENC_H264   = 0x00,
@@ -389,7 +389,7 @@ typedef enum _NET_DEV_VENC_TYPE
 	NET_DEV_VENC_BUTT
 }NET_DEV_VENC_TYPE;
 
-//ÒôÆµ±àÂëÀàĞÍ
+//éŸ³é¢‘ç¼–ç ç±»å‹
 typedef enum _NET_DEV_AENC_TYPE
 {
 	NET_DEV_AENC_G711A = 0x00,
@@ -399,7 +399,7 @@ typedef enum _NET_DEV_AENC_TYPE
 }NET_DEV_AENC_TYPE;
 
 
-//ÂëÁ÷ÀàĞÍ
+//ç æµç±»å‹
 typedef enum _NET_DEV_VENC_BITRATE_TYPE
 {
 	NET_DEV_BT_ABR = 0,
@@ -409,7 +409,7 @@ typedef enum _NET_DEV_VENC_BITRATE_TYPE
 	NET_DEV_BT_BUTT
 }NET_DEV_VENC_BITRATE_TYPE;
 
-// 264 ±àÂëµÈ¼¶
+// 264 ç¼–ç ç­‰çº§
 typedef enum _NET_DEV_ENCODELEVEL
 {
 	NET_DEV_EL_BASELINE = 0,
@@ -418,7 +418,7 @@ typedef enum _NET_DEV_ENCODELEVEL
 }NET_DEV_ENCODELEVEL;
 
 
-//·Ö±æÂÊÀàĞÍ
+//åˆ†è¾¨ç‡ç±»å‹
 typedef enum _NET_DEV_IMAGERESOLUTION
 {
 	NET_DEV_IMG_1080P       = 0,   // 1920*1080
@@ -434,29 +434,29 @@ typedef enum _NET_DEV_IMAGERESOLUTION
 
 
 
- //±àÂë²ÎÊı 
+ //ç¼–ç å‚æ•° 
 typedef  struct _NET_DEV_ENCODEPARAM
 {
 	int  Resolution;
-	int  EncodeLevel;		//±àÂëµÈ¼¶ 'NET_DEV_ENCODELEVEL'
-	int  StreamMixType;		//ÂëÁ÷Ä£Ê½NET_DEV_STREAM_MIX_TYPE
-	int  FrameRate;		//Ö¡ÂÊ ÊıÖµĞÍ ³£ÓÃÖµ£º5£¬10, 15, 20, 25, 30
-	int IsFrameRatePreferred;		//ÊÇ·ñÖ¡ÂÊÓÅÏÈ 1: ÊÇ, 0: ²»ÊÇ
-	int  IframeInterval;		//IÖ¡¼ä¸ô ÊıÖµĞÍ ³£ÓÃÖµ: 25£¬50£¬75£¬100
-	int  VideoEncodeType;		//ÊÓÆµ±àÂëÀàĞÍ, NET_DEV_VENC_TYPE
-	int  ImageResolution;		//Í¼Ïñ·Ö±æÂÊ 'NET_DEV_IMAGERESOLUTION'
-	int  QPValue;		//ÖÊÁ¿  ÊıÖµĞÍ ³£ÓÃÖµ£º25£¬50
-	int BitRateType;		//Î»ÂÊÀàĞÍ 'NET_DEV_VENC_BITRATE_TYPE'
-	int  BitRate;		//Î»ÂÊ 128k ~ 8000k
-	int  AudioInputMode;		//ÒôÆµÊäÈëÀàĞÍ 'NET_DEV_AUDIOINPUTMODE'
-	int  AudioEncodeType;		//ÒôÆµ±àÂëÀàĞÍ 'NET_DEV_AENC_TYPE'
+	int  EncodeLevel;		//ç¼–ç ç­‰çº§ 'NET_DEV_ENCODELEVEL'
+	int  StreamMixType;		//ç æµæ¨¡å¼NET_DEV_STREAM_MIX_TYPE
+	int  FrameRate;		//å¸§ç‡ æ•°å€¼å‹ å¸¸ç”¨å€¼ï¼š5ï¼Œ10, 15, 20, 25, 30
+	int IsFrameRatePreferred;		//æ˜¯å¦å¸§ç‡ä¼˜å…ˆ 1: æ˜¯, 0: ä¸æ˜¯
+	int  IframeInterval;		//Iå¸§é—´éš” æ•°å€¼å‹ å¸¸ç”¨å€¼: 25ï¼Œ50ï¼Œ75ï¼Œ100
+	int  VideoEncodeType;		//è§†é¢‘ç¼–ç ç±»å‹, NET_DEV_VENC_TYPE
+	int  ImageResolution;		//å›¾åƒåˆ†è¾¨ç‡ 'NET_DEV_IMAGERESOLUTION'
+	int  QPValue;		//è´¨é‡  æ•°å€¼å‹ å¸¸ç”¨å€¼ï¼š25ï¼Œ50
+	int BitRateType;		//ä½ç‡ç±»å‹ 'NET_DEV_VENC_BITRATE_TYPE'
+	int  BitRate;		//ä½ç‡ 128k ~ 8000k
+	int  AudioInputMode;		//éŸ³é¢‘è¾“å…¥ç±»å‹ 'NET_DEV_AUDIOINPUTMODE'
+	int  AudioEncodeType;		//éŸ³é¢‘ç¼–ç ç±»å‹ 'NET_DEV_AENC_TYPE'
 }NET_DEV_ENCODEPARAM;
 
 
 typedef struct _EYEST_CAPTURE_CFG_S_
 {
-	unsigned char 		u8VideoEncType;		//ÊÓÆµ±àÂë¸ñÊ½ 2--JPEG ¹Ì¶¨Öµ
-	unsigned char 		u8Quilty;			//×¥ÅÄÖÊÁ¿ 
+	unsigned char 		u8VideoEncType;		//è§†é¢‘ç¼–ç æ ¼å¼ 2--JPEG å›ºå®šå€¼
+	unsigned char 		u8Quilty;			//æŠ“æ‹è´¨é‡ 
 	unsigned char 		u8Res[30];	
 }NET_CAPTURE_CFG_S, *LPNET_CAPTURE_CFG_S;
 
@@ -464,45 +464,45 @@ typedef struct _EYEST_CAPTURE_CFG_S_
 
 typedef  struct _NET_DEV_ENCODECFG
 {
-	NET_DEV_ENCODEPARAM Main;		//Ö÷ÂëÁ÷    ±àÂë²ÎÊı
-	NET_DEV_ENCODEPARAM Second;		//×ÓÂëÁ÷    ±àÂë²ÎÊı
-	NET_DEV_ENCODEPARAM Third;		//µÚÈıÂëÁ÷  ±àÂë²ÎÊı
+	NET_DEV_ENCODEPARAM Main;		//ä¸»ç æµ    ç¼–ç å‚æ•°
+	NET_DEV_ENCODEPARAM Second;		//å­ç æµ    ç¼–ç å‚æ•°
+	NET_DEV_ENCODEPARAM Third;		//ç¬¬ä¸‰ç æµ  ç¼–ç å‚æ•°
 	NET_CAPTURE_CFG_S    jpegcfg;
 }NET_DEV_ENCODECFG;
 
 //===================================================================
-//Í¼ÏñĞ§¹û²ÎÊı
+//å›¾åƒæ•ˆæœå‚æ•°
 //===================================================================
 typedef struct _NET_DEV_VIDEO_EFFECT
 {
-	int  Contrast;		//¶Ô±È¶È
-	int  Bright;		//ÁÁ¶È
-	int  Hue;		//»Ò¶È
-	int  Saturation;		//±¥ºÍ¶È
-	int  Sharpness;		//Èñ¶È
+	int  Contrast;		//å¯¹æ¯”åº¦
+	int  Bright;		//äº®åº¦
+	int  Hue;		//ç°åº¦
+	int  Saturation;		//é¥±å’Œåº¦
+	int  Sharpness;		//é”åº¦
 }NET_DEV_VIDEO_EFFECT;
 
  
 typedef  struct _NET_DEV_VIDEO_INPUT_EFFECT
 {
-	 int   EffectMode;		//Ä£Ê½,0:ÓÃ»§¶¨Òå, 1: Ä¬ÈÏÖµ
-	NET_DEV_VIDEO_EFFECT CustomizeMode;		//×Ô¶¨ÒåÄ£Ê½²ÎÊı
+	 int   EffectMode;		//æ¨¡å¼,0:ç”¨æˆ·å®šä¹‰, 1: é»˜è®¤å€¼
+	NET_DEV_VIDEO_EFFECT CustomizeMode;		//è‡ªå®šä¹‰æ¨¡å¼å‚æ•°
 }NET_DEV_VIDEO_INPUT_EFFECT;
 
 //===================================================================
-//ÍâÉè
+//å¤–è®¾
 //================================================
 
-//´®¿Ú²ÎÊı
+//ä¸²å£å‚æ•°
 typedef struct _NET_DEV_SERIAL_CFG
 {
 
-	unsigned char  WorkMode;		//¹¤×÷Ä£Ê½: 0 £­Í¸Ã÷Í¨µÀ, 1 - PTZ Ä£Ê½(Ê¹ÓÃPTZÖĞµÄ´®¿Ú²ÎÊı), 
-	unsigned char  BaudRate;		//´®¿Ú²¨ÌØÂÊ  (0-8) 115200, 57600, 38400, 19200, 9600, 4800, 2400, 1200, 600
-	unsigned char  DataBit;		//Êı¾İÎ» 5, 6, 7, 8
-	unsigned char  StopBit;		//Í£Ö¹Î» 1, 2
-	unsigned char  Verify;		//Ğ£ÑéÎ» 0:ÎŞ£¬1:ÆæĞ£Ñé 2:Å¼Ğ£Ñé
-	unsigned char  FlowControl;		//Á÷¿Ø 0£­ÎŞ£¬1£­ÈíÁ÷¿Ø, 2-Ó²Á÷¿Ø
+	unsigned char  WorkMode;		//å·¥ä½œæ¨¡å¼: 0 ï¼é€æ˜é€šé“, 1 - PTZ æ¨¡å¼(ä½¿ç”¨PTZä¸­çš„ä¸²å£å‚æ•°), 
+	unsigned char  BaudRate;		//ä¸²å£æ³¢ç‰¹ç‡  (0-8) 115200, 57600, 38400, 19200, 9600, 4800, 2400, 1200, 600
+	unsigned char  DataBit;		//æ•°æ®ä½ 5, 6, 7, 8
+	unsigned char  StopBit;		//åœæ­¢ä½ 1, 2
+	unsigned char  Verify;		//æ ¡éªŒä½ 0:æ— ï¼Œ1:å¥‡æ ¡éªŒ 2:å¶æ ¡éªŒ
+	unsigned char  FlowControl;		//æµæ§ 0ï¼æ— ï¼Œ1ï¼è½¯æµæ§, 2-ç¡¬æµæ§
 	unsigned char   unused[22]; //   
 
 }NET_DEV_SERIAL_CFG;
@@ -519,60 +519,60 @@ typedef struct _NET_LIGHT_CFG
 #define  MAX_OUT_CAM   16
 #define  MAX_LINE       4 
 #define  MAX_ADMIN      64
-#define  MAX_TIME_STATE_COUNT 24 //Ê±¼ä¶Î
+#define  MAX_TIME_STATE_COUNT 24 //æ—¶é—´æ®µ
 
 
 typedef struct
 {
 	int     freetime ;
-	float  PerMinuteFee;    //Ã¿·ÖÖÓ·ÑÓÃ
+	float  PerMinuteFee;    //æ¯åˆ†é’Ÿè´¹ç”¨
 	int    nStartTime[3] ; // H M S
 	int    nEndTime[3] ;  //
-	float  feerate ; //ÕÛ¿Û  Ä¬ÈÏ1 
+	float  feerate ; //æŠ˜æ‰£  é»˜è®¤1 
 	char  unused[32] ;
 }FeeRate;
 
 
 
-//ÍÑ»ú 
+//è„±æœº 
 typedef struct
 {
 	int 	park_id;
 
-	//°×Ìì»ù´¡·ÑÂÊ
-	int  		nbasefreetimeDay ; //°×ÌìÃâ·ÑÊ±³¤  
-	float	 	nBasePerMinuteFeeDay; //Æ½¾ùÃ¿·ÖÖÓ·ÑÓÃ
-	int		extendTimeDay ;  //¿íÏŞÊ±¼ä  ·Ö
-	//Ò¹¼ä»ù´¡·ÑÂÊ¼°Ãâ·ÑÊ±¼ä ÔİÊ±²»Ê¹ÓÃ
+	//ç™½å¤©åŸºç¡€è´¹ç‡
+	int  		nbasefreetimeDay ; //ç™½å¤©å…è´¹æ—¶é•¿  
+	float	 	nBasePerMinuteFeeDay; //å¹³å‡æ¯åˆ†é’Ÿè´¹ç”¨
+	int		extendTimeDay ;  //å®½é™æ—¶é—´  åˆ†
+	//å¤œé—´åŸºç¡€è´¹ç‡åŠå…è´¹æ—¶é—´ æš‚æ—¶ä¸ä½¿ç”¨
 	int  	nbasefreetimeNight ;
 	float	 	nBasePerMinuteFeeNight ;
 	int     extendTimeNight ;
-	//·ÑÂÊÊ±¼ä¶Î
+	//è´¹ç‡æ—¶é—´æ®µ
 	int 	nFeeCount ;
 	FeeRate  struFeeRate[MAX_TIME_STATE_COUNT] ;
-	unsigned char  unused[128] ;//±£Áô
+	unsigned char  unused[128] ;//ä¿ç•™
 
 
 }TFeeRateRecord;
 
 typedef struct 
 {
-	int    nSize ; //½á¹¹Ìå´óĞ¡ ==sizeof (OFFLINE_PARAM) 
-	int 	enable; //Ê¹ÄÜÍÑ»ú
-	int    nCamType ; //Ïà»úÀàĞÍ 0 Èë¿Ú 1³ö¿Ú 2³µÎ» 3Î´Öª
+	int    nSize ; //ç»“æ„ä½“å¤§å° ==sizeof (OFFLINE_PARAM) 
+	int 	enable; //ä½¿èƒ½è„±æœº
+	int    nCamType ; //ç›¸æœºç±»å‹ 0 å…¥å£ 1å‡ºå£ 2è½¦ä½ 3æœªçŸ¥
 		
 
-	int       ipcount  ;  //³ö¿ÚÏà»ú¸öÊı
+	int       ipcount  ;  //å‡ºå£ç›¸æœºä¸ªæ•°
 	char    leaveipaddr [MAX_OUT_CAM][16] ;
-	int  	   openMode; //  0 Ö±½Ó·ÅĞĞ 1 ¿ª¹Ø 2 id¿¨
+	int  	   openMode; //  0 ç›´æ¥æ”¾è¡Œ 1 å¼€å…³ 2 idå¡
 
-	//ÆÁÄ»Ïà¹Ø
-	int     LedRow;   // Ïà»úÁ¬½ÓÆÁÄ»µÄĞĞÊı
-	char szscreen_static [MAX_LINE][MAX_LEN] ;   //Ã¿Ò»ĞĞÄ¬ÈÏÏÔÊ¾ in Èë¿Ú
+	//å±å¹•ç›¸å…³
+	int     LedRow;   // ç›¸æœºè¿æ¥å±å¹•çš„è¡Œæ•°
+	char szscreen_static [MAX_LINE][MAX_LEN] ;   //æ¯ä¸€è¡Œé»˜è®¤æ˜¾ç¤º in å…¥å£
 
-	unsigned char  unusedscreen[256] ;  //±£Áô
+	unsigned char  unusedscreen[256] ;  //ä¿ç•™
 
-	//ÓïÒôÏà¹Ø
+	//è¯­éŸ³ç›¸å…³
 	char  szvoice_static[MAX_LEN];
 	int     nvoicespeed ;
 	int     nvoicevolume_normal ;
@@ -581,9 +581,9 @@ typedef struct
 
 /////////////////////////////////////////////////////////
 
-	TFeeRateRecord  gFreeRate ; //·ÑÂÊ
+	TFeeRateRecord  gFreeRate ; //è´¹ç‡
 	int                   nJunFree ;
-	unsigned char  unusedFee[252] ;//±£Áô
+	unsigned char  unusedFee[252] ;//ä¿ç•™
 
 }OFFLINE_PARAM;
 #define  NET_DEV_OFFLINE_INFO  OFFLINE_PARAM
@@ -591,16 +591,16 @@ typedef struct
 
 typedef struct   
 {
-	// ÉùÒôÉèÖÃ  ¹Ì¶¨
+	// å£°éŸ³è®¾ç½®  å›ºå®š
 	int   voicetype ;   
 	int   voicespeed ;
 	int   voicevolume ;
 	char  szvoice_in[64] ; 
 	char  szvoice_out[64] ;
 	char  szvoice_none[64] ;
-	// ¹Ì¶¨
+	// å›ºå®š
 	int    screenshowtype ;
-	char szscreen_adv[64] ; // ¹ã¸æ
+	char szscreen_adv[64] ; // å¹¿å‘Š
 	char szscreen_in[64] ;
 	char szscreen_out[64] ;
 	char szscreen_none[64] ;
@@ -617,91 +617,91 @@ typedef struct
 }NET_DEV_OFFLINE_V1;
 
 //==============================================
-//¸æ¾¯ÅäÖÃ
+//å‘Šè­¦é…ç½®
 //==============================================
  
 typedef struct _NET_DEV_ALARM_ITEM
 {
-	int   Channel;         //¸æ¾¯Í¼ÏñÍ¨µÀ
-	int   AlarmType;		//¸æ¾¯ÀàĞÍ
-	int   Action;		//0£º¿ªÊ¼¸æ¾¯£¬1£º½áÊø¸æ¾¯
+	int   Channel;         //å‘Šè­¦å›¾åƒé€šé“
+	int   AlarmType;		//å‘Šè­¦ç±»å‹
+	int   Action;		//0ï¼šå¼€å§‹å‘Šè­¦ï¼Œ1ï¼šç»“æŸå‘Šè­¦
 	int  Time;
-	unsigned char  Data[NET_DEV_ALARM_DATA_SIZE];	  //¸æ¾¯ÃèÊö
+	unsigned char  Data[NET_DEV_ALARM_DATA_SIZE];	  //å‘Šè­¦æè¿°
 }NET_DEV_ALARM_ITEM;
 
 
-//ÓÃ»§ĞÅÏ¢
+//ç”¨æˆ·ä¿¡æ¯
 //---------------------------------------
-//ÓÃ»§È¨ÏŞ
+//ç”¨æˆ·æƒé™
  
 
 typedef enum _NET_DEV_USER_REMOTERIGHT
 {
-	NET_DEV_USER_RR_PTZ_CTL = 0,/*Ô¶³Ì¿ØÖÆÔÆÌ¨*/
-	NET_DEV_USER_RR_REC_MANUL,  /*Ô¶³ÌÊÖ¶¯Â¼Ïó*/
-	NET_DEV_USER_RR_REC_PLAY,   /*Ô¶³Ì»Ø·Å */
-	NET_DEV_USER_RR_PARAM_SET,  /*Ô¶³ÌÉèÖÃ²ÎÊı*/
-	NET_DEV_USER_RR_PARAM_GET,  /*Ô¶³Ì²é¿´²ÎÊı */
-	NET_DEV_USER_RR_ADVANCED,   /*Ô¶³Ì¸ß¼¶²Ù×÷(Éı¼¶£¬¸ñÊ½»¯)*/
-	NET_DEV_USER_RR_LOG_STATE,  /*Ô¶³Ì²é¿´×´Ì¬¡¢ÈÕÖ¾*/
-	NET_DEV_USER_RR_REAL_TALK,  /*Ô¶³Ì·¢ÆğÓïÒô¶Ô½²*/
-	NET_DEV_USER_RR_REAL_PLAY,  /*Ô¶³ÌÔ¤ÀÀ*/
-	NET_DEV_USER_RR_ALARMOUT,   /*Ô¶³ÌÇëÇó±¨¾¯ÉÏ´«¡¢±¨¾¯Êä³ö*/
-	NET_DEV_USER_RR_VIDEOOUT,   /*Ô¶³Ì¿ØÖÆ£¬±¾µØÊä³ö*/
-	NET_DEV_USER_RR_RS232_TRNS, /*Ô¶³Ì¿ØÖÆ´®¿Ú*/
-	NET_DEV_USER_RR_CHANNEL,    /*Ô¶³Ì¹ÜÀíÄ£ÄâºÍIP camera */
-	NET_DEV_USER_RR_POWEROFF,   /*Ô¶³Ì¹Ø»ú/ÖØÆô */
+	NET_DEV_USER_RR_PTZ_CTL = 0,/*è¿œç¨‹æ§åˆ¶äº‘å°*/
+	NET_DEV_USER_RR_REC_MANUL,  /*è¿œç¨‹æ‰‹åŠ¨å½•è±¡*/
+	NET_DEV_USER_RR_REC_PLAY,   /*è¿œç¨‹å›æ”¾ */
+	NET_DEV_USER_RR_PARAM_SET,  /*è¿œç¨‹è®¾ç½®å‚æ•°*/
+	NET_DEV_USER_RR_PARAM_GET,  /*è¿œç¨‹æŸ¥çœ‹å‚æ•° */
+	NET_DEV_USER_RR_ADVANCED,   /*è¿œç¨‹é«˜çº§æ“ä½œ(å‡çº§ï¼Œæ ¼å¼åŒ–)*/
+	NET_DEV_USER_RR_LOG_STATE,  /*è¿œç¨‹æŸ¥çœ‹çŠ¶æ€ã€æ—¥å¿—*/
+	NET_DEV_USER_RR_REAL_TALK,  /*è¿œç¨‹å‘èµ·è¯­éŸ³å¯¹è®²*/
+	NET_DEV_USER_RR_REAL_PLAY,  /*è¿œç¨‹é¢„è§ˆ*/
+	NET_DEV_USER_RR_ALARMOUT,   /*è¿œç¨‹è¯·æ±‚æŠ¥è­¦ä¸Šä¼ ã€æŠ¥è­¦è¾“å‡º*/
+	NET_DEV_USER_RR_VIDEOOUT,   /*è¿œç¨‹æ§åˆ¶ï¼Œæœ¬åœ°è¾“å‡º*/
+	NET_DEV_USER_RR_RS232_TRNS, /*è¿œç¨‹æ§åˆ¶ä¸²å£*/
+	NET_DEV_USER_RR_CHANNEL,    /*è¿œç¨‹ç®¡ç†æ¨¡æ‹Ÿå’ŒIP camera */
+	NET_DEV_USER_RR_POWEROFF,   /*è¿œç¨‹å…³æœº/é‡å¯ */
 }NET_DEV_USER_REMOTERIGHT;
 
 
  
 typedef struct _NET_DEV_USER_INFO
 {
-	char  UserName[NET_DEV_USERNAME_LEN];		//ÓÃ»§Ãû
-	char  PassWord[NET_DEV_PASSWORD_LEN];		//ÃÜÂë
+	char  UserName[NET_DEV_USERNAME_LEN];		//ç”¨æˆ·å
+	char  PassWord[NET_DEV_PASSWORD_LEN];		//å¯†ç 
 //	 int LocalRight;	
-	 unsigned long    RemoteRight;		//Ô¶³Ì²Ù×÷È¨ÏŞÑÚÂë NET_DEV_USER_REMOTERIGHT
-	 unsigned long    Reserve;		//±£Áô 
+	 unsigned long    RemoteRight;		//è¿œç¨‹æ“ä½œæƒé™æ©ç  NET_DEV_USER_REMOTERIGHT
+	 unsigned long    Reserve;		//ä¿ç•™ 
 }NET_DEV_USER_INFO;
  
  
 typedef struct _NET_DEV_USER_MODIFY
 {
-	char  OldUserName[NET_DEV_USERNAME_LEN];		// ¾ÉÓÃ»§Ãû
-	char  OldPassWord[NET_DEV_PASSWORD_LEN];		// ¾ÉÓÃ»§Ãû
-	char  NewUserName[NET_DEV_USERNAME_LEN];		// ĞÂÓÃ»§Ãû
-	char  NewPassWord[NET_DEV_PASSWORD_LEN];		// ĞÂÃÜÂë
-	int   RemoteRight;		// Ô¶³Ì²Ù×÷È¨ÏŞÑÚÂë
+	char  OldUserName[NET_DEV_USERNAME_LEN];		// æ—§ç”¨æˆ·å
+	char  OldPassWord[NET_DEV_PASSWORD_LEN];		// æ—§ç”¨æˆ·å
+	char  NewUserName[NET_DEV_USERNAME_LEN];		// æ–°ç”¨æˆ·å
+	char  NewPassWord[NET_DEV_PASSWORD_LEN];		// æ–°å¯†ç 
+	int   RemoteRight;		// è¿œç¨‹æ“ä½œæƒé™æ©ç 
 	int  Reserve;
 }NET_DEV_USER_MODIFY;
 
 
 typedef struct _NET_DEV_CAMERAPARAM
 {
-	int   Mirror;		//¾µÏñ(Í¼Ïñ×óÓÒµ÷»») 1 ¾µÏñ 0 ²»¾µÏñ
-	int  Flip;		//·­×ª(Í¼ÏñÉÏÏÂµ÷»») 1 ·­×ª 0 ²»·­×ª
-	int  WdrMode;		//¿í¶¯Ì¬Ä£Ê½ 0×Ô¶¯   1 ´ò¿ª 2 ¹Ø±Õ
-	int WdrStreng;		//0-255Îª¿í¶¯Ì¬Ç¿¶È
+	int   Mirror;		//é•œåƒ(å›¾åƒå·¦å³è°ƒæ¢) 1 é•œåƒ 0 ä¸é•œåƒ
+	int  Flip;		//ç¿»è½¬(å›¾åƒä¸Šä¸‹è°ƒæ¢) 1 ç¿»è½¬ 0 ä¸ç¿»è½¬
+	int  WdrMode;		//å®½åŠ¨æ€æ¨¡å¼ 0è‡ªåŠ¨   1 æ‰“å¼€ 2 å…³é—­
+	int WdrStreng;		//0-255ä¸ºå®½åŠ¨æ€å¼ºåº¦
 
-	int  DeNoiseLevel;		//½µÔëµÈ¼¶ 0--¹Ø±Õ 1--µÍ 2--ÖĞ 3--¸ß
+	int  DeNoiseLevel;		//é™å™ªç­‰çº§ 0--å…³é—­ 1--ä½ 2--ä¸­ 3--é«˜
 
-	int  Rotate;		//Ğı×ª£º0 ÎŞ    1 Ğı×ª90¶È    2 Ğı×ª270¶È
-	int Shutter;		//µç×Ó¿ìÃÅ 0-9  0£º×Ô¶¯¿ìÃÅ 1£º1/25S£¬ 2£º1/50S£¬ 3£º1/100S£¬ 4: 1/200S 5£º1/500S£¬ 6£º1/1000S£¬ 7£º1/2000S£¬ 8£º1/5000S£¬ 9£º1/10000S
+	int  Rotate;		//æ—‹è½¬ï¼š0 æ—     1 æ—‹è½¬90åº¦    2 æ—‹è½¬270åº¦
+	int Shutter;		//ç”µå­å¿«é—¨ 0-9  0ï¼šè‡ªåŠ¨å¿«é—¨ 1ï¼š1/25Sï¼Œ 2ï¼š1/50Sï¼Œ 3ï¼š1/100Sï¼Œ 4: 1/200S 5ï¼š1/500Sï¼Œ 6ï¼š1/1000Sï¼Œ 7ï¼š1/2000Sï¼Œ 8ï¼š1/5000Sï¼Œ 9ï¼š1/10000S
 
-	int  AwbMode;		//°×Æ½ºâÄ£Ê½ 0 ×Ô¶¯1 ÊÒÄÚ 2ÊÒÍâ 3×Ô¶¯¸ú×Ù 4 ÊÖ¶¯
-	int  AwbRed;		//°×Æ½ºâºìÉ«
-	int  AwbBlue;		//°×Æ½ºâÀ¶É«
-	int  Blc;		//±³¹â²¹³¥0 ¹Ø±Õ 1 ´ò¿ª
-	int  AEMinTime;		//×Ô¶¯ÆØ¹â×îĞ¡ÆØ¹âÊ±¼ä,×Ô¶¯¿ìÃÅÊ±ÓĞĞ§£º0£º²»ÏŞ,1£º1/25S£¬2£º1/50S£¬3£º1/100S£¬4: 1/200S£¬5£º1/500S£¬6£º1/1000S£¬7£º1/2000S£¬8£º1/5000S£¬9£º1/10000S
-	int  AEMaxTime;		//×Ô¶¯ÆØ¹â×î´óÆØ¹âÊ±¼ä,Í¬AEMinTime,ÇÒÓ¦>=AEMinTime
-	int  AGain;		//×Ô¶¯ÔöÒæ(0-255)
+	int  AwbMode;		//ç™½å¹³è¡¡æ¨¡å¼ 0 è‡ªåŠ¨1 å®¤å†… 2å®¤å¤– 3è‡ªåŠ¨è·Ÿè¸ª 4 æ‰‹åŠ¨
+	int  AwbRed;		//ç™½å¹³è¡¡çº¢è‰²
+	int  AwbBlue;		//ç™½å¹³è¡¡è“è‰²
+	int  Blc;		//èƒŒå…‰è¡¥å¿0 å…³é—­ 1 æ‰“å¼€
+	int  AEMinTime;		//è‡ªåŠ¨æ›å…‰æœ€å°æ›å…‰æ—¶é—´,è‡ªåŠ¨å¿«é—¨æ—¶æœ‰æ•ˆï¼š0ï¼šä¸é™,1ï¼š1/25Sï¼Œ2ï¼š1/50Sï¼Œ3ï¼š1/100Sï¼Œ4: 1/200Sï¼Œ5ï¼š1/500Sï¼Œ6ï¼š1/1000Sï¼Œ7ï¼š1/2000Sï¼Œ8ï¼š1/5000Sï¼Œ9ï¼š1/10000S
+	int  AEMaxTime;		//è‡ªåŠ¨æ›å…‰æœ€å¤§æ›å…‰æ—¶é—´,åŒAEMinTime,ä¸”åº”>=AEMinTime
+	int  AGain;		//è‡ªåŠ¨å¢ç›Š(0-255)
 	int   DGain;
-	int   AVGLight;  // ÆÚÍûÁÁ¶È
+	int   AVGLight;  // æœŸæœ›äº®åº¦
 
-	int    Brightness;//ÁÁ¶È
-	int    Contrast ;//¶Ô±È¶È
-	int    Sturation ;//±¥ºÍ¶È
-	int     Hue ;//É«µ÷
+	int    Brightness;//äº®åº¦
+	int    Contrast ;//å¯¹æ¯”åº¦
+	int    Sturation ;//é¥±å’Œåº¦
+	int     Hue ;//è‰²è°ƒ
 	int      Sharpness;	
 	int       PowerSync;	
 	int      LdcStreng ;
@@ -711,33 +711,33 @@ typedef struct _NET_DEV_CAMERAPARAM
 
 typedef struct  
 {
-	unsigned long  Mirror;		//¾µÏñ(Í¼Ïñ×óÓÒµ÷»») 1 ¾µÏñ 0 ²»¾µÏñ
-	unsigned long  Flip;		//·­×ª(Í¼ÏñÉÏÏÂµ÷»») 1 ·­×ª 0 ²»·­×ª
-	unsigned long  WdrMode;		//¿í¶¯Ì¬Ä£Ê½ 0×Ô¶¯   1 ´ò¿ª 2 ¹Ø±Õ
-	unsigned long  WdrStreng;		//0-255Îª¿í¶¯Ì¬Ç¿¶È
+	unsigned long  Mirror;		//é•œåƒ(å›¾åƒå·¦å³è°ƒæ¢) 1 é•œåƒ 0 ä¸é•œåƒ
+	unsigned long  Flip;		//ç¿»è½¬(å›¾åƒä¸Šä¸‹è°ƒæ¢) 1 ç¿»è½¬ 0 ä¸ç¿»è½¬
+	unsigned long  WdrMode;		//å®½åŠ¨æ€æ¨¡å¼ 0è‡ªåŠ¨   1 æ‰“å¼€ 2 å…³é—­
+	unsigned long  WdrStreng;		//0-255ä¸ºå®½åŠ¨æ€å¼ºåº¦
 
-	unsigned long  DeNoiseLevel;		//½µÔëµÈ¼¶ 0--¹Ø±Õ 1--µÍ 2--ÖĞ 3--¸ß
+	unsigned long  DeNoiseLevel;		//é™å™ªç­‰çº§ 0--å…³é—­ 1--ä½ 2--ä¸­ 3--é«˜
 
-	unsigned long  Rotate;		//Ğı×ª£º0 ÎŞ    1 Ğı×ª90¶È    2 Ğı×ª270¶È
-	unsigned long  Shutter;		//µç×Ó¿ìÃÅ 0-9  0£º×Ô¶¯¿ìÃÅ 1£º1/25S£¬ 2£º1/50S£¬ 3£º1/100S£¬ 4: 1/200S 5£º1/500S£¬ 6£º1/1000S£¬ 7£º1/2000S£¬ 8£º1/5000S£¬ 9£º1/10000S
-	unsigned long  AwbMode;		//°×Æ½ºâÄ£Ê½ 0 ×Ô¶¯1 ÊÒÄÚ 2ÊÒÍâ 3×Ô¶¯¸ú×Ù 4 ÊÖ¶¯
-	unsigned long  AwbRed;		//°×Æ½ºâºìÉ«
-	unsigned long  AwbBlue;		//°×Æ½ºâÀ¶É«
-	unsigned long  Blc;		//±³¹â²¹³¥0 ¹Ø±Õ 1 ´ò¿ª
+	unsigned long  Rotate;		//æ—‹è½¬ï¼š0 æ—     1 æ—‹è½¬90åº¦    2 æ—‹è½¬270åº¦
+	unsigned long  Shutter;		//ç”µå­å¿«é—¨ 0-9  0ï¼šè‡ªåŠ¨å¿«é—¨ 1ï¼š1/25Sï¼Œ 2ï¼š1/50Sï¼Œ 3ï¼š1/100Sï¼Œ 4: 1/200S 5ï¼š1/500Sï¼Œ 6ï¼š1/1000Sï¼Œ 7ï¼š1/2000Sï¼Œ 8ï¼š1/5000Sï¼Œ 9ï¼š1/10000S
+	unsigned long  AwbMode;		//ç™½å¹³è¡¡æ¨¡å¼ 0 è‡ªåŠ¨1 å®¤å†… 2å®¤å¤– 3è‡ªåŠ¨è·Ÿè¸ª 4 æ‰‹åŠ¨
+	unsigned long  AwbRed;		//ç™½å¹³è¡¡çº¢è‰²
+	unsigned long  AwbBlue;		//ç™½å¹³è¡¡è“è‰²
+	unsigned long  Blc;		//èƒŒå…‰è¡¥å¿0 å…³é—­ 1 æ‰“å¼€
 
-	unsigned long  AEMinTime;		//×Ô¶¯ÆØ¹â×îĞ¡ÆØ¹âÊ±¼ä,×Ô¶¯¿ìÃÅÊ±ÓĞĞ§£º0£º²»ÏŞ,1£º1/25S£¬2£º1/50S£¬3£º1/100S£¬4: 1/200S£¬5£º1/500S£¬6£º1/1000S£¬7£º1/2000S£¬8£º1/5000S£¬9£º1/10000S
-	unsigned long  AEMaxTime;		//×Ô¶¯ÆØ¹â×î´óÆØ¹âÊ±¼ä,Í¬AEMinTime,ÇÒÓ¦>=AEMinTime
+	unsigned long  AEMinTime;		//è‡ªåŠ¨æ›å…‰æœ€å°æ›å…‰æ—¶é—´,è‡ªåŠ¨å¿«é—¨æ—¶æœ‰æ•ˆï¼š0ï¼šä¸é™,1ï¼š1/25Sï¼Œ2ï¼š1/50Sï¼Œ3ï¼š1/100Sï¼Œ4: 1/200Sï¼Œ5ï¼š1/500Sï¼Œ6ï¼š1/1000Sï¼Œ7ï¼š1/2000Sï¼Œ8ï¼š1/5000Sï¼Œ9ï¼š1/10000S
+	unsigned long  AEMaxTime;		//è‡ªåŠ¨æ›å…‰æœ€å¤§æ›å…‰æ—¶é—´,åŒAEMinTime,ä¸”åº”>=AEMinTime
 	
 	
-	unsigned long  AGain;		//×Ô¶¯ÔöÒæ(0-255)
+	unsigned long  AGain;		//è‡ªåŠ¨å¢ç›Š(0-255)
 	
 	unsigned long   DGain;
-	unsigned long   AVGLight;  // ÆÚÍûÁÁ¶È
+	unsigned long   AVGLight;  // æœŸæœ›äº®åº¦
 
-	unsigned long    Brightness;//ÁÁ¶È
-	unsigned long    Contrast ;//¶Ô±È¶È
-	unsigned long    Sturation ;//±¥ºÍ¶È
-	unsigned long      Hue ;//É«µ÷
+	unsigned long    Brightness;//äº®åº¦
+	unsigned long    Contrast ;//å¯¹æ¯”åº¦
+	unsigned long    Sturation ;//é¥±å’Œåº¦
+	unsigned long      Hue ;//è‰²è°ƒ
 	unsigned long       Sharpness;	
 
 }NET_DEV_CAMERAPARAM_V1;
@@ -747,23 +747,23 @@ typedef struct
 
 typedef struct _NET_DEV_CAMERACFG
 {
-	int   CameraMode;		// 0: ÓÃ»§×Ô¶¨Òå£¬ 1£ºÄ¬ÈÏÖµ
-	NET_DEV_CAMERAPARAM CameraParam;		//ÓÃ»§×Ô¶¨Òå
+	int   CameraMode;		// 0: ç”¨æˆ·è‡ªå®šä¹‰ï¼Œ 1ï¼šé»˜è®¤å€¼
+	NET_DEV_CAMERAPARAM CameraParam;		//ç”¨æˆ·è‡ªå®šä¹‰
 }NET_DEV_CAMERACFG;
 
 
 typedef struct  
 {
-	unsigned long  CameraMode;		// 0: ÓÃ»§×Ô¶¨Òå£¬ 1£ºÄ¬ÈÏÖµ
-	NET_DEV_CAMERAPARAM_V1 CameraParam;		//ÓÃ»§×Ô¶¨Òå
+	unsigned long  CameraMode;		// 0: ç”¨æˆ·è‡ªå®šä¹‰ï¼Œ 1ï¼šé»˜è®¤å€¼
+	NET_DEV_CAMERAPARAM_V1 CameraParam;		//ç”¨æˆ·è‡ªå®šä¹‰
 }NET_DEV_CAMERACFG_V1;
 
 
 
 typedef struct _NET_DEV_CAMERABASEINFO
 {
-	char     DevName[NET_DEV_DEVICE_NAME_LEN] ; // Éè±¸Ãû³Æ
-	char     DevId[NET_DEV_DEVICE_NAME_LEN] ;      // Éè±¸IDºÅ
+	char     DevName[NET_DEV_DEVICE_NAME_LEN] ; // è®¾å¤‡åç§°
+	char     DevId[NET_DEV_DEVICE_NAME_LEN] ;      // è®¾å¤‡IDå·
 	char      DevType ;
 	char      unused[7];
 }NET_DEV_CAMBASEINFO;
@@ -772,20 +772,20 @@ typedef struct _NET_DEV_CAMERABASEINFO
 // old version
 typedef struct  
 {
-	char     DevName[NET_DEV_DEVICE_NAME_LEN] ; // Éè±¸Ãû³Æ
-	char     DevId[NET_DEV_DEVICE_NAME_LEN-1] ;      // Éè±¸IDºÅ
+	char     DevName[NET_DEV_DEVICE_NAME_LEN] ; // è®¾å¤‡åç§°
+	char     DevId[NET_DEV_DEVICE_NAME_LEN-1] ;      // è®¾å¤‡IDå·
 	char      DevType ;
 }NET_DEV_CAMBASEINFO_V1;
 
 
 typedef  struct _NET_DEV_OSD_TEXT
 {
-	int    TextType ;// OSDÀàĞÍ
-	int TextEnable;		//ÊÇ·ñÏÔÊ¾ÎÄ±¾£»1£ºÏÔÊ¾£¬0£ºÒş²Ø
-	int  TextX;		//ÎÄ±¾×ø±êX
-	int  TextY;		//ÎÄ±¾×ø±êY
-	int  TextW;		//ÎÄ±¾¿í¶È(»ñÈ¡ÓĞĞ§)
-	int  TextH;		//ÎÄ±¾¸ß¶È(»ñÈ¡ÓĞĞ§)
+	int    TextType ;// OSDç±»å‹
+	int TextEnable;		//æ˜¯å¦æ˜¾ç¤ºæ–‡æœ¬ï¼›1ï¼šæ˜¾ç¤ºï¼Œ0ï¼šéšè—
+	int  TextX;		//æ–‡æœ¬åæ ‡X
+	int  TextY;		//æ–‡æœ¬åæ ‡Y
+	int  TextW;		//æ–‡æœ¬å®½åº¦(è·å–æœ‰æ•ˆ)
+	int  TextH;		//æ–‡æœ¬é«˜åº¦(è·å–æœ‰æ•ˆ)
 	char  TextData[NET_DEV_OSD_TEXT_LEN];
 }NET_DEV_OSD_TEXT;
 
@@ -793,36 +793,36 @@ typedef  struct _NET_DEV_OSD_TEXT
  
 typedef struct _NET_SNAP_OSD
 {
-	int  DisplayAttr;		//osd ·´É«£»1£º¿ªÆô£¬0£º¹Ø±Õ
-	int  DisplayColor;		//osdÏÔÊ¾ÑÕÉ«
-	int  MaxWidth;		//×î´ó¿í¶È
-	int  MaxHeight;		//×î´ó¸ß¶È
+	int  DisplayAttr;		//osd åè‰²ï¼›1ï¼šå¼€å¯ï¼Œ0ï¼šå…³é—­
+	int  DisplayColor;		//osdæ˜¾ç¤ºé¢œè‰²
+	int  MaxWidth;		//æœ€å¤§å®½åº¦
+	int  MaxHeight;		//æœ€å¤§é«˜åº¦
 	NET_DEV_OSD_TEXT Texts[NET_DEV_OSD_TEXT_NUM];
 }NET_DEV_SNAP_OSD;
 
 
 
 
-//×´Ì¬ĞÅÏ¢
+//çŠ¶æ€ä¿¡æ¯
 //------------------------------------------------------------
 typedef enum _NET_DEV_STATE_IDX
 {
 	NET_DEV_STATE_NETWORK   = 0,    //NET_DEV_NETSTATES 
 	NET_DEV_STATE_WORKS     = 1,    //NET_DEV_WORKSTATE
-	NET_DEV_STATE_IVS     = 2,    // ÖÇÄÜ·ÖÎö×´Ì¬
+	NET_DEV_STATE_IVS     = 2,    // æ™ºèƒ½åˆ†æçŠ¶æ€
 }NET_DEV_STATE_IDX;
 
 
-//------------------- IVS ½á¹¹¶¨Òå -------------------
-#define NET_DEV_MAX_POLYGON_POINT_NUM         8   //¶à±ßĞÎ×î´ó¶¥µã¸öÊı
-#define NET_DEV_MAX_OBJECT_NUM              16   //×î´óÄ¿±êÊı
-#define NET_DEV_MAX_TRACK_NUM              16   //×î´ó¸ú×ÙÄ¿±êÊı
-#define NET_DEV_MAX_REC_PLATE_NUM         4   //×î´ó³µÅÆÊ¶±ğÊı
-#define      NET_DEV_MAX_RECT_NUM            4  //×î´ó¾ØĞÎ¸öÊı
+//------------------- IVS ç»“æ„å®šä¹‰ -------------------
+#define NET_DEV_MAX_POLYGON_POINT_NUM         8   //å¤šè¾¹å½¢æœ€å¤§é¡¶ç‚¹ä¸ªæ•°
+#define NET_DEV_MAX_OBJECT_NUM              16   //æœ€å¤§ç›®æ ‡æ•°
+#define NET_DEV_MAX_TRACK_NUM              16   //æœ€å¤§è·Ÿè¸ªç›®æ ‡æ•°
+#define NET_DEV_MAX_REC_PLATE_NUM         4   //æœ€å¤§è½¦ç‰Œè¯†åˆ«æ•°
+#define      NET_DEV_MAX_RECT_NUM            4  //æœ€å¤§çŸ©å½¢ä¸ªæ•°
 
-#define  MAX_SPACE                   3  //×î´ó³µÎ»Êı
+#define  MAX_SPACE                   3  //æœ€å¤§è½¦ä½æ•°
 
-// µã
+// ç‚¹
  
 typedef struct _NET_DEV_POINT
 {
@@ -834,7 +834,7 @@ typedef struct _NET_DEV_POINT
 
 
 
-// Ïß
+// çº¿
  
 typedef struct _NET_DEV_LINE
 {
@@ -843,15 +843,15 @@ typedef struct _NET_DEV_LINE
 }NET_DEV_LINE;
 
 
-// ¶à±ßĞÎ
+// å¤šè¾¹å½¢
  
 typedef struct _NET_DEV_POLYGON
 {
-	int   Count;		//¶à±ßĞÎ¶¥µãÊı
-	NET_DEV_POINT Points[NET_DEV_MAX_POLYGON_POINT_NUM];		//¶à±ßĞÎµã×ø±ê
+	int   Count;		//å¤šè¾¹å½¢é¡¶ç‚¹æ•°
+	NET_DEV_POINT Points[NET_DEV_MAX_POLYGON_POINT_NUM];		//å¤šè¾¹å½¢ç‚¹åæ ‡
 }NET_DEV_POLYGON;
 
-// ¾ØĞÎ
+// çŸ©å½¢
 typedef struct _NET_DEV_RECT
 {
 	int  left ;
@@ -867,16 +867,16 @@ typedef struct _NET_DEV_RECTLIST
 }NET_DEV_RECT_LIST;
 
 
-// ³µÅÆÊ¶±ğ²ÎÊı½á¹¹
+// è½¦ç‰Œè¯†åˆ«å‚æ•°ç»“æ„
 
 typedef struct _NET_DEV_PLATERECPARAM
 {
-		NET_DEV_RECT  recrect;//Ê¶±ğÇøÓò
+		NET_DEV_RECT  recrect;//è¯†åˆ«åŒºåŸŸ
 		int   samefilter ; 
 		int   platesize ;
 		int   recidx;
-		int   platekind;		//ĞèÒªÊ¶±ğµÄ³µÅÆÀàĞÍ
-		int   province;	 //Ä¬ÈÏÊ¡·İ±àÂë
+		int   platekind;		//éœ€è¦è¯†åˆ«çš„è½¦ç‰Œç±»å‹
+		int   province;	 //é»˜è®¤çœä»½ç¼–ç 
 
 }NET_DEV_PLATERECPARAM;
 
@@ -884,14 +884,14 @@ typedef struct _NET_DEV_PLATERECPARAM
 typedef struct  _EYEST_RECROI
 {
 	NET_DEV_POLYGON  stPolyList ;
-	NET_DEV_LINE  stSnapLine; //×¥ÅÄÏß 
-	int       nPlateExistTime ; //³µÅÆ´æÔÚÊ±¼ä
+	NET_DEV_LINE  stSnapLine; //æŠ“æ‹çº¿ 
+	int       nPlateExistTime ; //è½¦ç‰Œå­˜åœ¨æ—¶é—´
 	int        nDistance ;
 	int        nDefaultHanzi ;
 	int        nLens  ;
 	int       nDetectNoPlate ;
-	int        nFiterDirection; //¹ıÂË³µÅÆ
-	int        nRecPlateType ; //°´ÕÕÎ»²Ù×÷ 
+	int        nFiterDirection; //è¿‡æ»¤è½¦ç‰Œ
+	int        nRecPlateType ; //æŒ‰ç…§ä½æ“ä½œ 
 	int        nCarHeadCheck ;
 	int        nCarModelCheck ;
 	char       unused[40] ;
@@ -901,25 +901,25 @@ typedef struct  _EYEST_RECROI
 
 
 
-// ¹¤×÷Ä£Ê½
+// å·¥ä½œæ¨¡å¼
 typedef struct _NET_DEV_WORKMODE
 {
-	int   workmode ; // 0 µØ¸ĞÏßÈ¦´¥·¢ 1 ĞéÄâÏßÈ¦´¥·¢ 2 ÊÓÆµÊ¶±ğ
-	// ËµÃ÷:ĞéÄâÏßÈ¦·½Ê½ÊÇ¼ì²âµ½ÓĞÔË¶¯ºó×¥ÅÄÒ»ÕÅÊ¶±ğ£¬
-	//ÊÓÆµÊ¶±ğ ÊÇ¶ÔÊ¶±ğÇøÓò½øĞĞÖğÖ¡²ßÂÔÊ¶±ğ£¬×¥ÅÄ×îÓÅ½á¹û
-	int    filterplate ; //1 ¹ıÂËÎŞÅÆ³µÁ¾  0,²»¹ıÂË Ä¬ÈÏ²»¹ıÂË
+	int   workmode ; // 0 åœ°æ„Ÿçº¿åœˆè§¦å‘ 1 è™šæ‹Ÿçº¿åœˆè§¦å‘ 2 è§†é¢‘è¯†åˆ«
+	// è¯´æ˜:è™šæ‹Ÿçº¿åœˆæ–¹å¼æ˜¯æ£€æµ‹åˆ°æœ‰è¿åŠ¨åæŠ“æ‹ä¸€å¼ è¯†åˆ«ï¼Œ
+	//è§†é¢‘è¯†åˆ« æ˜¯å¯¹è¯†åˆ«åŒºåŸŸè¿›è¡Œé€å¸§ç­–ç•¥è¯†åˆ«ï¼ŒæŠ“æ‹æœ€ä¼˜ç»“æœ
+	int    filterplate ; //1 è¿‡æ»¤æ— ç‰Œè½¦è¾†  0,ä¸è¿‡æ»¤ é»˜è®¤ä¸è¿‡æ»¤
  	int     filterdirection;
-	unsigned char  useinside;  //Ê¹ÓÃÄÚ²¿¿ØÖÆ
-	unsigned char  camtype  ;// Èë¿Ú1 ³ö¿Ú2
+	unsigned char  useinside;  //ä½¿ç”¨å†…éƒ¨æ§åˆ¶
+	unsigned char  camtype  ;// å…¥å£1 å‡ºå£2
 	unsigned char  unuesd[6] ;
 }NET_DEV_WORKMODE;
 
 
-//ºÚ°×Ãûµ¥  
+//é»‘ç™½åå•  
 #define  MAX_PLATELEN  16 
 typedef struct
 {
-	int type ;  // 0 °×Ãûµ¥  1 ºÚÃûµ¥
+	int type ;  // 0 ç™½åå•  1 é»‘åå•
 	char  szplate[MAX_PLATELEN];
 	int   nStartTime[6] ; // yy mm dd hh mm ss
 	int   nEndTime[6] ;
@@ -934,7 +934,7 @@ typedef struct
 
 
 //#define  MAXVIPCOUNT        81920
-// ×î´ó 1024 ¸öVIP    32 *80960   = 2.5M 
+// æœ€å¤§ 1024 ä¸ªVIP    32 *80960   = 2.5M 
 typedef  struct _NET_VIPINFOLIST
 {
 	int    m_vipcount ;
@@ -957,7 +957,7 @@ typedef  struct _NET_VIPINFO  // 20 byte
 	unsigned char      viptype;
 }NET_VIPINFO_V1;
 
-// ×î´ó 1024 ¸öVIP    20 *40960   =  800K 
+// æœ€å¤§ 1024 ä¸ªVIP    20 *40960   =  800K 
 typedef  struct  
 {
 	int    m_vipcount ;
@@ -976,22 +976,22 @@ typedef struct
 
 
 
-// ³µÅÆÊ¶±ğ½á¹û
+// è½¦ç‰Œè¯†åˆ«ç»“æœ
 typedef struct _NET_DEV_PLATERESUT
 {
-	char   platenum[16]; //³µÅÆºÅÂë
-	char   platecolor[8]; //³µÅÆÑÕÉ«
-	float   platereal ;  //³µÅÆÖÃĞÅ¶È
-	NET_DEV_RECT platerect ; // ³µÅÆÏñËØÎ»ÖÃ
+	char   platenum[16]; //è½¦ç‰Œå·ç 
+	char   platecolor[8]; //è½¦ç‰Œé¢œè‰²
+	float   platereal ;  //è½¦ç‰Œç½®ä¿¡åº¦
+	NET_DEV_RECT platerect ; // è½¦ç‰Œåƒç´ ä½ç½®
 }NET_DEV_PLATERESULT;
 
 
-// ³µÁ¾Ê¶±ğ²ÎÊı½á¹¹
+// è½¦è¾†è¯†åˆ«å‚æ•°ç»“æ„
 
 typedef struct _NET_DEV_CARRECPARAM
 {
-		int  maxsize ; //³µÁ¾×î´óÏñËØ¿í¶È
-		int  minsize  ; //³µÁ¾×îĞ¡ÏñËØ¿í¶È
+		int  maxsize ; //è½¦è¾†æœ€å¤§åƒç´ å®½åº¦
+		int  minsize  ; //è½¦è¾†æœ€å°åƒç´ å®½åº¦
 }NET_DEV_CARRECPARAM;
 
 
@@ -999,25 +999,25 @@ typedef struct _NET_DEV_CARRECPARAM
 
 typedef struct _NET_DEV_CARRECRESULT
 {
-	NET_DEV_RECT carrect ; // ³µÁ¾ÏñËØÎ»ÖÃ
-	char                  carcolor[8];//³µÉíÑÕÉ«
-	//char                  carmodel[128] ;//³µĞÍĞÅÏ¢
-	//float                  carfeature[1024]; //³µÁ¾ÌØÕ÷Âë
+	NET_DEV_RECT carrect ; // è½¦è¾†åƒç´ ä½ç½®
+	char                  carcolor[8];//è½¦èº«é¢œè‰²
+	//char                  carmodel[128] ;//è½¦å‹ä¿¡æ¯
+	//float                  carfeature[1024]; //è½¦è¾†ç‰¹å¾ç 
 }NET_DEV_CARRECRESULT;
 
 
-//³µÎ»²ÎÊı
+//è½¦ä½å‚æ•°
 typedef struct _NET_DEV_PARK_SPACEINFO
 {
-	char    spaceinfo[32];  // ³µÎ»ĞÅÏ¢ £¬Î¨Ò»±êÊ¶
-	NET_DEV_RECT   spacerect;//³µÎ»ÔÚÍ¼ÏñÖĞ¾ØĞÎÎ»ÖÃ
+	char    spaceinfo[32];  // è½¦ä½ä¿¡æ¯ ï¼Œå”¯ä¸€æ ‡è¯†
+	NET_DEV_RECT   spacerect;//è½¦ä½åœ¨å›¾åƒä¸­çŸ©å½¢ä½ç½®
 }NET_DEV_PARK_SPACEINFO;
 
-// Ïà»ú¶ÔÓ¦³µÎ»²ÎÊıÁĞ±í
+// ç›¸æœºå¯¹åº”è½¦ä½å‚æ•°åˆ—è¡¨
 typedef struct _NET_DEV_PARK_SPACELIST
 {
-		int        spacecount ; // ¶ÔÓ¦³µÎ»ÊıÄ¿
-	    NET_DEV_PARK_SPACEINFO   spacerectinfo[MAX_SPACE];//³µÎ»ÔÚÍ¼ÏñÖĞ¾ØĞÎÎ»ÖÃ
+		int        spacecount ; // å¯¹åº”è½¦ä½æ•°ç›®
+	    NET_DEV_PARK_SPACEINFO   spacerectinfo[MAX_SPACE];//è½¦ä½åœ¨å›¾åƒä¸­çŸ©å½¢ä½ç½®
 }NET_DEV_PARK_SPACELIST;
 
 
@@ -1030,7 +1030,7 @@ typedef struct _NET_DEV_PARK_SPACELIST
 
 #define   EYEST_MAXLETTER    12
 
-// ³µÅÆÊ¶±ğ½á¹¹Ìå
+// è½¦ç‰Œè¯†åˆ«ç»“æ„ä½“
 typedef struct _tagRv_AnprRsult
 {
 	char 	platenum[EYEST_PLATELEN];//## plate num   GB2312
@@ -1067,52 +1067,52 @@ typedef struct
 
 typedef struct _NET_DEV_REC_RESUT
 {
-	unsigned char    spacestatus ; //³µÎ»×´Ì¬		
-	NET_DEV_CARRECRESULT carrecresult; //³µÁ¾ĞÅÏ¢
+	unsigned char    spacestatus ; //è½¦ä½çŠ¶æ€		
+	NET_DEV_CARRECRESULT carrecresult; //è½¦è¾†ä¿¡æ¯
 	char                   spaceid[32] ;
-	EYEST_ANPRRESULT   plateresult; //³µÅÆĞÅÏ¢
+	EYEST_ANPRRESULT   plateresult; //è½¦ç‰Œä¿¡æ¯
 }NET_DEV_REC_RESUT;
 
 typedef struct 
 {
-	unsigned char    spacestatus ; //³µÎ»×´Ì¬		
-	NET_DEV_CARRECRESULT carrecresult; //³µÁ¾ĞÅÏ¢
+	unsigned char    spacestatus ; //è½¦ä½çŠ¶æ€		
+	NET_DEV_CARRECRESULT carrecresult; //è½¦è¾†ä¿¡æ¯
 	char                   spaceid[32] ;
-	RV_ANPRRESULT_V1   plateresult; //³µÅÆĞÅÏ¢
+	RV_ANPRRESULT_V1   plateresult; //è½¦ç‰Œä¿¡æ¯
 }NET_DEV_REC_RESUT_V1;
 
 
-//Í¼Æ¬³¤¶È×î´óÖµ
+//å›¾ç‰‡é•¿åº¦æœ€å¤§å€¼
 #define NET_DEV_MAX_PIC_SIZE (1024*1024)
 
-//Ïà»ú³µÎ»Ê¶±ğ½á¹ûÁĞ±í
+//ç›¸æœºè½¦ä½è¯†åˆ«ç»“æœåˆ—è¡¨
 typedef struct _NET_DEV_SMARTRESUTLIST 
 {
-	int   smartmode ;// ÀàĞÍ  0 ³öÈë¿ÚÏà»ú×¥ÅÄ£¬1 ³µÎ»¼ì²â
-	int    spacecount ; // ³µÎ»¸öÊı 
-	NET_DEV_TIME_EX      checktime;  //³µÅÆ¡¢³µÁ¾Ê¶±ğµÄÊ±¼ä
-	NET_DEV_CAMBASEINFO    cambase;  //  Ïà»úÎ¨Ò»ĞÅÏ¢
-	 NET_DEV_IPADDR  DevIP;    //Éè±¸IP      
+	int   smartmode ;// ç±»å‹  0 å‡ºå…¥å£ç›¸æœºæŠ“æ‹ï¼Œ1 è½¦ä½æ£€æµ‹
+	int    spacecount ; // è½¦ä½ä¸ªæ•° 
+	NET_DEV_TIME_EX      checktime;  //è½¦ç‰Œã€è½¦è¾†è¯†åˆ«çš„æ—¶é—´
+	NET_DEV_CAMBASEINFO    cambase;  //  ç›¸æœºå”¯ä¸€ä¿¡æ¯
+	 NET_DEV_IPADDR  DevIP;    //è®¾å¤‡IP      
 	NET_DEV_REC_RESUT  parkspaceresult[MAX_SPACE];
-	int    imgwidth ;  //Ôö¼ÓÍ¼Æ¬¸ß¶È  ¿í¶È £¬·½±ã½âÂëÇ°ÄÚ´æ·ÖÅÉ
+	int    imgwidth ;  //å¢åŠ å›¾ç‰‡é«˜åº¦  å®½åº¦ ï¼Œæ–¹ä¾¿è§£ç å‰å†…å­˜åˆ†æ´¾
 	int    imgheight ;
-	int     piclength;   //Í¼Æ¬³¤¶È
-	int     platepiclength ; //³µÅÆÇøÓòÍ¼Ïñ³¤¶È £¬Èç¹û 0 Ã»ÓĞ³µÅÆ
+	int     piclength;   //å›¾ç‰‡é•¿åº¦
+	int     platepiclength ; //è½¦ç‰ŒåŒºåŸŸå›¾åƒé•¿åº¦ ï¼Œå¦‚æœ 0 æ²¡æœ‰è½¦ç‰Œ
 }NET_DEV_SMARTRECRESUTLIST;
 
 
 
 typedef struct
 {
-	int   smartmode;// ÀàĞÍ  0 ³öÈë¿ÚÏà»ú×¥ÅÄ£¬1 ³µÎ»¼ì²â
-	int    spacecount; // ³µÎ»¸öÊı 
-	NET_DEV_TIME_EX_V1      checktime;  //³µÅÆ¡¢³µÁ¾Ê¶±ğµÄÊ±¼ä
-	NET_DEV_CAMBASEINFO_V1    cambase;  //  Ïà»úÎ¨Ò»ĞÅÏ¢
-	NET_DEV_IPADDR  DevIP;    //Éè±¸IP      
+	int   smartmode;// ç±»å‹  0 å‡ºå…¥å£ç›¸æœºæŠ“æ‹ï¼Œ1 è½¦ä½æ£€æµ‹
+	int    spacecount; // è½¦ä½ä¸ªæ•° 
+	NET_DEV_TIME_EX_V1      checktime;  //è½¦ç‰Œã€è½¦è¾†è¯†åˆ«çš„æ—¶é—´
+	NET_DEV_CAMBASEINFO_V1    cambase;  //  ç›¸æœºå”¯ä¸€ä¿¡æ¯
+	NET_DEV_IPADDR  DevIP;    //è®¾å¤‡IP      
 	NET_DEV_REC_RESUT_V1  parkspaceresult[MAX_SPACE];
-	int    imgwidth;  //Ôö¼ÓÍ¼Æ¬¸ß¶È  ¿í¶È £¬·½±ã½âÂëÇ°ÄÚ´æ·ÖÅÉ
+	int    imgwidth;  //å¢åŠ å›¾ç‰‡é«˜åº¦  å®½åº¦ ï¼Œæ–¹ä¾¿è§£ç å‰å†…å­˜åˆ†æ´¾
 	int    imgheight;
-	int     piclength;   //Í¼Æ¬³¤¶È
+	int     piclength;   //å›¾ç‰‡é•¿åº¦
 }NET_DEV_SMARTRECRESUTLIST_V1;
 
 
@@ -1133,14 +1133,14 @@ typedef struct
 
 }NET_ISP_INFO;
 
-//¾«¼ò½á¹¹Ìå
+//ç²¾ç®€ç»“æ„ä½“
 typedef struct  
 {
-	char     camerIp[16];//Ïà»úIPµØÖ·  16×Ö½Ú×Ö·û´®
-	char     DevName[32] ; // Éè±¸Ãû³Æ  32×Ö½Ú×Ö·û´®
-	char     DevId[32] ;      // Éè±¸IDºÅ  32×Ö½Ú×Ö·û´®
-  	char   	platenum[16];//³µÅÆÑÕÉ«    16×Ö½Ú×Ö·û´®   GB2312±àÂë·½Ê½
-	char     platecolor[8] ;//³µÅÆºÅÂë   8×Ö½Ú×Ö·û´®   GB2312±àÂë·½Ê½
+	char     camerIp[16];//ç›¸æœºIPåœ°å€  16å­—èŠ‚å­—ç¬¦ä¸²
+	char     DevName[32] ; // è®¾å¤‡åç§°  32å­—èŠ‚å­—ç¬¦ä¸²
+	char     DevId[32] ;      // è®¾å¤‡IDå·  32å­—èŠ‚å­—ç¬¦ä¸²
+  	char   	platenum[16];//è½¦ç‰Œé¢œè‰²    16å­—èŠ‚å­—ç¬¦ä¸²   GB2312ç¼–ç æ–¹å¼
+	char     platecolor[8] ;//è½¦ç‰Œå·ç    8å­—èŠ‚å­—ç¬¦ä¸²   GB2312ç¼–ç æ–¹å¼
 
 
 	int        nyear ;
@@ -1165,85 +1165,85 @@ typedef struct
 }NET_DEV_SMARTRECRESUT_EX;
 
 
- // Éè±¸×´Ì¬
+ // è®¾å¤‡çŠ¶æ€
 typedef struct _NET_DEV_WORKSTATE
 {
-	int  DeviceState;		// Éè±¸µÄ×´Ì¬£º0£­Õı³££»1£­CPUÕ¼ÓÃÂÊÌ«¸ß£¬³¬¹ı85%£»
-	unsigned char  AlarmInState[NET_DEV_MAX_ALARM_IN_NUM];		//±¨¾¯ÊäÈë¿ÚµÄ×´Ì¬£º0-Ã»ÓĞ±¨¾¯£»1-ÓĞ±¨¾¯
-	unsigned char  AlarmOutState[NET_DEV_MAX_ALARM_OUT_NUM];		//±¨¾¯Êä³ö¿ÚµÄ×´Ì¬£º0-Ã»ÓĞÊä³ö£¬1-ÓĞ±¨¾¯Êä³ö
-	int  LocalDisplayState;		//±¾µØÏÔÊ¾×´Ì¬£º0-Õı³££¬1-²»Õı³£
+	int  DeviceState;		// è®¾å¤‡çš„çŠ¶æ€ï¼š0ï¼æ­£å¸¸ï¼›1ï¼CPUå ç”¨ç‡å¤ªé«˜ï¼Œè¶…è¿‡85%ï¼›
+	unsigned char  AlarmInState[NET_DEV_MAX_ALARM_IN_NUM];		//æŠ¥è­¦è¾“å…¥å£çš„çŠ¶æ€ï¼š0-æ²¡æœ‰æŠ¥è­¦ï¼›1-æœ‰æŠ¥è­¦
+	unsigned char  AlarmOutState[NET_DEV_MAX_ALARM_OUT_NUM];		//æŠ¥è­¦è¾“å‡ºå£çš„çŠ¶æ€ï¼š0-æ²¡æœ‰è¾“å‡ºï¼Œ1-æœ‰æŠ¥è­¦è¾“å‡º
+	int  LocalDisplayState;		//æœ¬åœ°æ˜¾ç¤ºçŠ¶æ€ï¼š0-æ­£å¸¸ï¼Œ1-ä¸æ­£å¸¸
 }NET_DEV_WORKSTATE;
 
 
 typedef struct _NET_DEV_STATUS
 {
-	NET_DEV_IPADDR deviceipaddr; //Éè±¸IPĞÅÏ¢
-	NET_DEV_CAMBASEINFO deviceinfo; // Éè±¸»ù±¾ĞÅÏ¢(°üÀ¨ID£¬Ãû³ÆµÈ)
-	UINT   status; //×´Ì¬×Ö£¬ÉÏÏß£¬ÀëÏß
+	NET_DEV_IPADDR deviceipaddr; //è®¾å¤‡IPä¿¡æ¯
+	NET_DEV_CAMBASEINFO deviceinfo; // è®¾å¤‡åŸºæœ¬ä¿¡æ¯(åŒ…æ‹¬IDï¼Œåç§°ç­‰)
+	UINT   status; //çŠ¶æ€å­—ï¼Œä¸Šçº¿ï¼Œç¦»çº¿
 }NET_DEV_STATUS;
 
 
 
 typedef struct  
 {
-	char  ipaddr[16] ;//16×Ö½Ú ×Ö·û´® Ïà»úIPµØÖ·
-	int   status ;   //4×Ö½Ú ÕûĞÎ    0±íÊ¾ ÀëÏß  1 ±íÊ¾ÉÏÏß
+	char  ipaddr[16] ;//16å­—èŠ‚ å­—ç¬¦ä¸² ç›¸æœºIPåœ°å€
+	int   status ;   //4å­—èŠ‚ æ•´å½¢    0è¡¨ç¤º ç¦»çº¿  1 è¡¨ç¤ºä¸Šçº¿
 }NET_DEV_STATUS_EX;
 
 
 
-////²ÎÊıID¶¨Òå
+////å‚æ•°IDå®šä¹‰
 //----------------------------------------------------
 
 typedef enum _NET_DEV_PARAM_ID
 {
-	NET_DEV_PARAM_VERSION             = 1,  // NET_DEV_VERSION            Éè±¸³ö³§ĞÅÏ¢ v1
-	NET_DEV_PARAM_BASECFG             = 2,  // NET_DEV_BASECFG            Éè±¸»ù´¡ĞÅÏ¢ v1
-	NET_DEV_PARAM_TIME                = 3,  // NET_DEV_TIME_EX            ÏµÍ³Ê±¼äĞÅÏ¢ v1
-	NET_DEV_PARAM_NET                 = 4,  // NET_DEV_ETHCFG             ÍøÂçĞÅÏ¢     v1
-	NET_DEV_PARAM_SERVICECFG          = 5,  // NET_DEV_SERVICECFG         ÍøÂç·şÎñ¶Ë¿Ú v1
-	NET_DEV_PARAM_USER_QUERY          = 6,  // NET_DEV_USERSET            ÓÃ»§ĞÅÏ¢²éÑ¯ v1
-	NET_DEV_PARAM_MODIFY_USER_CFG     = 7,  // NET_DEV_USER_MODIFY        ĞŞ¸ÄÓÃ»§ĞÅÏ¢ v1
-	NET_DEV_PARAM_USER_ADD            = 8,  // NET_DEV_USER_INFO          Ôö¼ÓÓÃ»§(´øÈ¨ÏŞ)   v1
-	NET_DEV_PARAM_USER_DEL            = 9,  // NET_DEV_USER               É¾³ıÓÃ»§(ÓÃ»§Ãû³Æ) v1
-	NET_DEV_PARAM_VIDEOIN_EFFECT      = 10, // NET_DEV_VIDEO_INPUT_EFFECT ÊÓÆµÊäÈë²ÎÊı v1           CHN
-	NET_DEV_PARAM_CAMERA_CFG          = 11, // NET_DEV_CAMERACFG          Í¼Ïñ²ÎÊı     v1           CHN
-	NET_DEV_PARAM_ENCODECFG           = 12, // NET_DEV_ENCODECFG          ±àÂë²ÎÊı     v1           CHN                  CHN
-	NET_DEV_PARAM_PLATEREC            =13,//_NET_DEV_CARRECPARAM³µÅÆÊ¶±ğ²ÎÊı
-	NET_DEV_PARAM_CARREC            =14,//_NET_DEV_CARRECPARAM³µÁ¾Ê¶±ğ²ÎÊı
-	NET_DEV_PARAM_OSDCFG          =15, //NET_DEV_SNAP_OSD  OSD ĞÅÏ¢
-	NET_DEV_PARAM_DEVICEINFO          =16,    // Éè±¸ĞÅÏ¢ÉèÖÃNET_DEV_CAMBASEINFO 
+	NET_DEV_PARAM_VERSION             = 1,  // NET_DEV_VERSION            è®¾å¤‡å‡ºå‚ä¿¡æ¯ v1
+	NET_DEV_PARAM_BASECFG             = 2,  // NET_DEV_BASECFG            è®¾å¤‡åŸºç¡€ä¿¡æ¯ v1
+	NET_DEV_PARAM_TIME                = 3,  // NET_DEV_TIME_EX            ç³»ç»Ÿæ—¶é—´ä¿¡æ¯ v1
+	NET_DEV_PARAM_NET                 = 4,  // NET_DEV_ETHCFG             ç½‘ç»œä¿¡æ¯     v1
+	NET_DEV_PARAM_SERVICECFG          = 5,  // NET_DEV_SERVICECFG         ç½‘ç»œæœåŠ¡ç«¯å£ v1
+	NET_DEV_PARAM_USER_QUERY          = 6,  // NET_DEV_USERSET            ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢ v1
+	NET_DEV_PARAM_MODIFY_USER_CFG     = 7,  // NET_DEV_USER_MODIFY        ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯ v1
+	NET_DEV_PARAM_USER_ADD            = 8,  // NET_DEV_USER_INFO          å¢åŠ ç”¨æˆ·(å¸¦æƒé™)   v1
+	NET_DEV_PARAM_USER_DEL            = 9,  // NET_DEV_USER               åˆ é™¤ç”¨æˆ·(ç”¨æˆ·åç§°) v1
+	NET_DEV_PARAM_VIDEOIN_EFFECT      = 10, // NET_DEV_VIDEO_INPUT_EFFECT è§†é¢‘è¾“å…¥å‚æ•° v1           CHN
+	NET_DEV_PARAM_CAMERA_CFG          = 11, // NET_DEV_CAMERACFG          å›¾åƒå‚æ•°     v1           CHN
+	NET_DEV_PARAM_ENCODECFG           = 12, // NET_DEV_ENCODECFG          ç¼–ç å‚æ•°     v1           CHN                  CHN
+	NET_DEV_PARAM_PLATEREC            =13,//_NET_DEV_CARRECPARAMè½¦ç‰Œè¯†åˆ«å‚æ•°
+	NET_DEV_PARAM_CARREC            =14,//_NET_DEV_CARRECPARAMè½¦è¾†è¯†åˆ«å‚æ•°
+	NET_DEV_PARAM_OSDCFG          =15, //NET_DEV_SNAP_OSD  OSD ä¿¡æ¯
+	NET_DEV_PARAM_DEVICEINFO          =16,    // è®¾å¤‡ä¿¡æ¯è®¾ç½®NET_DEV_CAMBASEINFO 
 	NET_DEV_PARAM_OFFLINEINFO      = 17, //OFFLINE info
-	NET_DEV_PARAM_CMS_CFG             = 100, // NET_DEV_CMS_CFG            Æ½Ì¨ĞÅÏ¢
+	NET_DEV_PARAM_CMS_CFG             = 100, // NET_DEV_CMS_CFG            å¹³å°ä¿¡æ¯
 	NET_DEV_PARAM_MAX
 }NET_DEV_PARAM_ID;
 
 
-//ÏûÏ¢¶¨Òå
+//æ¶ˆæ¯å®šä¹‰
 //----------------------------------------------------
 
 
 
- //ÓÃ»§µÇÂ¼ÇëÇó
+ //ç”¨æˆ·ç™»å½•è¯·æ±‚
 typedef struct _NET_DEV_LOGIN_REQ
 {
-	NET_DEV_USER_INFO User;		// ÓÃ»§Ãû£¬ÃÜÂë
-	unsigned long    KeepAliveTime;		// ĞÄÌøÖÜÆÚ µ¥Î» s
+	NET_DEV_USER_INFO User;		// ç”¨æˆ·åï¼Œå¯†ç 
+	unsigned long    KeepAliveTime;		// å¿ƒè·³å‘¨æœŸ å•ä½ s
 }NET_DEV_LOGIN_REQ;
 
-  //Ïà»ú·µ»ØµÇÂ¼ÏûÏ¢
+  //ç›¸æœºè¿”å›ç™»å½•æ¶ˆæ¯
 typedef struct _NET_DEV_LOGIN_RSP
 {
-	NET_DEV_USER_INFO UserInfo;		// ÓÃ»§ĞÅÏ¢(°üÀ¨È¨ÏŞ)
-	int            status ;   //µÇÂ¼×´Ì¬
+	NET_DEV_USER_INFO UserInfo;		// ç”¨æˆ·ä¿¡æ¯(åŒ…æ‹¬æƒé™)
+	int            status ;   //ç™»å½•çŠ¶æ€
 }NET_DEV_LOGIN_RSP;
 
 
 
-// ĞÄÌø°ü ÕâÀï·¢ËÍÒ»¸öÊ±¼äĞÅÏ¢
+// å¿ƒè·³åŒ… è¿™é‡Œå‘é€ä¸€ä¸ªæ—¶é—´ä¿¡æ¯
 typedef struct _NET_DEV_KEEPALIVE_RSP
 {
-	NET_DEV_TIME_EX TimeEx;		// ÏµÍ³Ê±¼ä
+	NET_DEV_TIME_EX TimeEx;		// ç³»ç»Ÿæ—¶é—´
 }NET_DEV_KEEPALIVE_RSP;
 
 
@@ -1262,10 +1262,10 @@ typedef  struct _NET_DEV_STATE_QUERY_RSP
 
 
  
-//  Íâ´¥·¢Æ÷ÅäÖÃ²ÎÊı
+//  å¤–è§¦å‘å™¨é…ç½®å‚æ•°
 typedef struct _NET_DEV_TRIGER
 {
-		int   trigertype ;  //´¥·¢Æ÷ÀàĞÍ 0 ±¾»úIO  1 ÍøÂçÉè±¸,2´®¿ÚÉè±¸
+		int   trigertype ;  //è§¦å‘å™¨ç±»å‹ 0 æœ¬æœºIO  1 ç½‘ç»œè®¾å¤‡,2ä¸²å£è®¾å¤‡
 		char  ipaddr ;
 		int    port  ;
 }NET_DEV_TRIGER;
@@ -1274,85 +1274,85 @@ typedef struct _NET_DEV_TRIGER
 
 //////////////////////////////////////////////////////////////////////////
 
-//Éè±¸Á¬½Ó
+//è®¾å¤‡è¿æ¥
 
-// ±¨¾¯»Øµ÷
+// æŠ¥è­¦å›è°ƒ
 typedef void ( __stdcall * NET_EVENTCALLBACK)(const NET_DEV_ALARM_ITEM *Report, void* UserParam);
 
-//×´Ì¬»Øµôº¯Êı
+//çŠ¶æ€å›æ‰å‡½æ•°
 typedef void ( __stdcall* NET_CONSTAUSCALLBACK)(NET_DEV_STATUS *status, void* UserParam);
 
-// ¾«¼òµÄ×´Ì¬»Øµ÷ 
+// ç²¾ç®€çš„çŠ¶æ€å›è°ƒ 
 typedef void ( __stdcall* NET_CONSTAUSCALLBACK_EX)(char  *ipaddr ,int status);
 
 typedef void ( __stdcall* NET_IO_DATACALLBACK)(char* pData ,int *nLength, int address);
 
 
 
-//ÖÇÄÜ¼ì²â×´Ì¬»Øµ÷º¯Êı 
-// ÕâÀïÎªÁË¼õÉÙÊı¾İ¿½±´£¬ĞŞ¸Ä»Øµ÷º¯Êı£¬
-//²ÎÊı¸ÄÎª 0 Í¼ÏñÍ·²¿Êı¾İ£¬1 Í¼ÏñjpegÊı¾İ£¬2 Í¼Ïñjpeg³¤¶È£¬3 ÓÃ»§Êı¾İ
+//æ™ºèƒ½æ£€æµ‹çŠ¶æ€å›è°ƒå‡½æ•° 
+// è¿™é‡Œä¸ºäº†å‡å°‘æ•°æ®æ‹·è´ï¼Œä¿®æ”¹å›è°ƒå‡½æ•°ï¼Œ
+//å‚æ•°æ”¹ä¸º 0 å›¾åƒå¤´éƒ¨æ•°æ®ï¼Œ1 å›¾åƒjpegæ•°æ®ï¼Œ2 å›¾åƒjpegé•¿åº¦ï¼Œ3 ç”¨æˆ·æ•°æ®
 typedef void ( __stdcall * NET_SMARTRECVCALLBACK)( NET_DEV_SMARTRECRESUTLIST *SmartResult, char *pJpeg ,int *nLength , char *userdata ,void* UserParam);
 
 typedef void(__stdcall * NET_SMARTRECVCALLBACKV1)(NET_DEV_SMARTRECRESUTLIST_V1 *SmartResult, char *pJpeg, int *nLength, char *userdata, void* UserParam);
 
-// ¾«¼òµÄÊ¶±ğ½á¹û»Øµ÷º¯Êı 
+// ç²¾ç®€çš„è¯†åˆ«ç»“æœå›è°ƒå‡½æ•° 
 typedef void ( __stdcall * NET_SMARTRECVCALLBACK_EX)( NET_DEV_SMARTRECRESUT_EX *SmartResultEx, char *pJpeg ,int *nLength , char *userdata ,void* UserParam);
 
 
-//ÆäËûÊı¾İ»Øµ÷ 
-//°üÀ¨ÍÑ»úÊı¾İ  ¿¨Êı¾İµÈ
+//å…¶ä»–æ•°æ®å›è°ƒ 
+//åŒ…æ‹¬è„±æœºæ•°æ®  å¡æ•°æ®ç­‰
 typedef void ( __stdcall * NET_MISC_CALLBACK)(char *pData ,int len ,void* UserParam);
 
-// µÀÕ¢×´Ì¬»Øµ÷Ô­ĞÍ
+// é“é—¸çŠ¶æ€å›è°ƒåŸå‹
 typedef void ( __stdcall * NET_gate_callback)(const char* jsongate);
 /*
-»Øµ÷·µ»ØÊı¾İÔ­Ê¼ÑùÊ½
+å›è°ƒè¿”å›æ•°æ®åŸå§‹æ ·å¼
 {"addr":2,"carcnt":0,"carstatus":1,"gatestatus":3,"open":0,"ready":1,"ver":328}
 
 
 {
-    "addr":2,        // µÀÕ¢µØÖ· 0~255
-    "carcnt":0,      // Î´¹ı³µÁ¾¼ÆÊı
-    "carstatus":1,   // µÀÕ¢ÏÂ·¢³µÁ¾×´Ì¬ 1ÎŞ³µ 2ÓĞ³µ
-    "gatestatus":3,  // µÀÕ¢×´Ì¬ 1¿ªµ½Î» 2¹Øµ½Î» 3Í£Ö¹×´Ì¬ 4ÕıÔÚ¿ªÕ¢ 5ÕıÔÚ¹ØÕ¢
-    "open":-1,       // ¿ªÕ¢Ô´  1°´¼ü£¬2Ò£¿Ø£¬ ÆäËûÎŞĞ§
-    "ready":1,       // µÀÕ¢ÒÑÁ¬½ÓÖ¸Ê¾  1±íÊ¾ÒÑÁ¬½Ó£¬ÆäËûÎ´Á¬½Ó
-    "ver":328        // µÀÕ¢°æ±¾ºÅ
+    "addr":2,        // é“é—¸åœ°å€ 0~255
+    "carcnt":0,      // æœªè¿‡è½¦è¾†è®¡æ•°
+    "carstatus":1,   // é“é—¸ä¸‹å‘è½¦è¾†çŠ¶æ€ 1æ— è½¦ 2æœ‰è½¦
+    "gatestatus":3,  // é“é—¸çŠ¶æ€ 1å¼€åˆ°ä½ 2å…³åˆ°ä½ 3åœæ­¢çŠ¶æ€ 4æ­£åœ¨å¼€é—¸ 5æ­£åœ¨å…³é—¸
+    "open":-1,       // å¼€é—¸æº  1æŒ‰é”®ï¼Œ2é¥æ§ï¼Œ å…¶ä»–æ— æ•ˆ
+    "ready":1,       // é“é—¸å·²è¿æ¥æŒ‡ç¤º  1è¡¨ç¤ºå·²è¿æ¥ï¼Œå…¶ä»–æœªè¿æ¥
+    "ver":328        // é“é—¸ç‰ˆæœ¬å·
 }
 
 */
 
 
-//DLLÀïµÄÏà»úµÇÂ¼½á¹¹Ìå£¬´Ë´¦ÓÃÀ´¸ù¾İÁ¬½Ó¾ä±ú»ñÈ¡IPµØÖ·ÓÃ
+//DLLé‡Œçš„ç›¸æœºç™»å½•ç»“æ„ä½“ï¼Œæ­¤å¤„ç”¨æ¥æ ¹æ®è¿æ¥å¥æŸ„è·å–IPåœ°å€ç”¨
 typedef struct  _net_dev_instance
 {
 	char ipaddr[16];
 	int    port;
 	int    clientsock;
-	int   clientsockpic; //  Í¼Æ¬½ÓÊÕ
-	int      autoconnecttimes; // ×Ô¶¯Á¬½ÓÊ±¼ä¼ä¸ô
+	int   clientsockpic; //  å›¾ç‰‡æ¥æ”¶
+	int      autoconnecttimes; // è‡ªåŠ¨è¿æ¥æ—¶é—´é—´éš”
 
-	BYTE  UserName[NET_DEV_USERNAME_LEN]; // ÓÃ»§Ãû
-	BYTE  PassWord[NET_DEV_PASSWORD_LEN]; // ÃÜÂë
+	BYTE  UserName[NET_DEV_USERNAME_LEN]; // ç”¨æˆ·å
+	BYTE  PassWord[NET_DEV_PASSWORD_LEN]; // å¯†ç 
 
 
-	BOOL  AutoReconnect;   // ÊÇ·ñ×Ô¶¯Á¬½Ó 
-	BOOL  beautothread;        // ×Ô¶¯Á¬½ÓÏß³ÌÊÇ·ñÆô¶¯
-	BOOL  beautopicthread;         // ×Ô¶¯Á¬½ÓÏß³ÌÊÇ·ñ pic  
+	BOOL  AutoReconnect;   // æ˜¯å¦è‡ªåŠ¨è¿æ¥ 
+	BOOL  beautothread;        // è‡ªåŠ¨è¿æ¥çº¿ç¨‹æ˜¯å¦å¯åŠ¨
+	BOOL  beautopicthread;         // è‡ªåŠ¨è¿æ¥çº¿ç¨‹æ˜¯å¦ pic  
 
-	BOOL   beconnected;  // Á¬½ÓÊÇ·ñ³É¹¦
-	BOOL   bepicconnected;  // Á¬½ÓÊÇ·ñ³É¹¦ Í¼Æ¬½ÓÊÕ
+	BOOL   beconnected;  // è¿æ¥æ˜¯å¦æˆåŠŸ
+	BOOL   bepicconnected;  // è¿æ¥æ˜¯å¦æˆåŠŸ å›¾ç‰‡æ¥æ”¶
 
-	HANDLE   hAutoconHandle; // ×Ô¶¯Á´½ÓÏß³Ì¾ä±ú
-	HANDLE   hAutoExit;    // ×Ô¶¯Á¬½ÓÏß³ÌÍË³öEVENT
+	HANDLE   hAutoconHandle; // è‡ªåŠ¨é“¾æ¥çº¿ç¨‹å¥æŸ„
+	HANDLE   hAutoExit;    // è‡ªåŠ¨è¿æ¥çº¿ç¨‹é€€å‡ºEVENT
 
-	HANDLE   hAutoconPicHandle; // ×Ô¶¯Á´½ÓÏß³Ì¾ä±ú
-	HANDLE   hAutoPicExit;    // ×Ô¶¯Á¬½ÓÏß³ÌÍË³öEVENT
+	HANDLE   hAutoconPicHandle; // è‡ªåŠ¨é“¾æ¥çº¿ç¨‹å¥æŸ„
+	HANDLE   hAutoPicExit;    // è‡ªåŠ¨è¿æ¥çº¿ç¨‹é€€å‡ºEVENT
 
 	HANDLE   hRecvHandle;
 	HANDLE   hRecvExit;
-	BOOL       berecvthread;// ½ÓÊÕÏß³ÌÊÇ·ñ´´½¨
+	BOOL       berecvthread;// æ¥æ”¶çº¿ç¨‹æ˜¯å¦åˆ›å»º
 
 	HANDLE  hKeepAliveHandle;
 	HANDLE   hAliveExit;
@@ -1366,18 +1366,18 @@ typedef struct  _net_dev_instance
 	BOOL   bekeepalivepic;
 
 
-	BOOL  EventDesired;    // ÊÇ·ñ±¨¾¯ÉÏ±¨
-	UINT  TimeOut;   // ³¬Ê±Ê±¼ä
-	void* UserParam;   // ÓÃ»§ĞÅÏ¢
+	BOOL  EventDesired;    // æ˜¯å¦æŠ¥è­¦ä¸ŠæŠ¥
+	UINT  TimeOut;   // è¶…æ—¶æ—¶é—´
+	void* UserParam;   // ç”¨æˆ·ä¿¡æ¯
 	void * UserParamVZ;
 	void  *VZLogInInfo;
 	unsigned char *pjpegmem;
 
-	NET_EVENTCALLBACK EventCallback; // ÊÂ¼ş»Øµô
-	HWND hWnd;              // ´°¿Ú¾ä±ú
+	NET_EVENTCALLBACK EventCallback; // äº‹ä»¶å›æ‰
+	HWND hWnd;              // çª—å£å¥æŸ„
 	UINT Message;
-	NET_CONSTAUSCALLBACK StatusCallback; //×´Ì¬»Øµô
-	NET_SMARTRECVCALLBACK     spaceresultcallback; // ½á¹û»Øµô
+	NET_CONSTAUSCALLBACK StatusCallback; //çŠ¶æ€å›æ‰
+	NET_SMARTRECVCALLBACK     spaceresultcallback; // ç»“æœå›æ‰
 	NET_SMARTRECVCALLBACK_EX  spaceresultcallbackex;//
 	//VZ_CAPCALLFUN                               m_vzcallback ;
 	//NET_MISC_CALLBACK                       m_misccallback ;
@@ -1388,8 +1388,8 @@ typedef struct  _net_dev_instance
 		autoconnecttimes = 5;
 		AutoReconnect = 0;
 		beconnected = FALSE;
-		EventDesired = 0;    // ÊÇ·ñ¶©ÔÄ±¨¾¯ÉÏ±¨
-		TimeOut = 20;   // ³¬Ê±Ê±¼ä
+		EventDesired = 0;    // æ˜¯å¦è®¢é˜…æŠ¥è­¦ä¸ŠæŠ¥
+		TimeOut = 20;   // è¶…æ—¶æ—¶é—´
 		strcpy_s((char*)UserName,sizeof(UserName), "admin");
 		strcpy_s((char*)PassWord,sizeof(PassWord), "admin");
 		EventCallback = NULL;

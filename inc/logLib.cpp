@@ -11,6 +11,7 @@ extern char* __progname;
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/rotating_file_sink.h"
 #include "spdlog/sinks/daily_file_sink.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace SimplyLive
 {
@@ -54,12 +55,22 @@ namespace SimplyLive
 		{
 			static auto tp = std::make_shared<spdlog::details::thread_pool>(8192, 1);
 #ifdef _WIN32
-			auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(newPath,23,58,true,100);
+			auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(newPath,23,58,false,100);
 
+			auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+			//console_sink->set_level(spdlog::level::warn);
+			console_sink->set_pattern("[multi_sink_example] [%^%l%$] %v");
+
+			
+			//spdlog::logger logger("multi_sink", { console_sink, file_sink });
+
+			std::vector<spdlog::sink_ptr> sinks{
+				file_sink,console_sink
+			};
 #else
 			auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(getAString(newPath), logConfigToUse->maxLogFileSizeMB * 1024 * 1024, logConfigToUse->maxNumberOfRollingFile);
 #endif
-			rotating_logger = std::make_shared<spdlog::async_logger>(getAString(logPath), std::move(file_sink), std::move(tp), spdlog::async_overflow_policy::overrun_oldest);
+			rotating_logger = std::make_shared<spdlog::async_logger>(getAString(logPath), sinks.begin(), sinks.end(), std::move(tp), spdlog::async_overflow_policy::overrun_oldest);
 			register_logger(rotating_logger);
 		}
 		else

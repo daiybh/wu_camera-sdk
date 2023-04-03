@@ -257,7 +257,7 @@ public:
 			EYEST_NET_GET_PREVIEW_RGB(m_playinstance, rgb, width, height);
 
 			char ss[1024];
-			sprintf_s(ss, "getpic-->%d--%d\n", width, height);
+			sprintf_s(ss,"getpic-->%d--%d\n", width, height);
 			AddLogtoList(ss);
 		}
 		else
