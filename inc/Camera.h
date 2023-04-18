@@ -764,6 +764,7 @@ public:
 		if (!checkconnenct())return -100;
 		if (!EYEST_NET_RESTART(m_caminstance))
 			return -2;
+		m_caminstance=-1;
 		return 0;
 	}
 	bool checkconnenct()
