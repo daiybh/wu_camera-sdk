@@ -440,33 +440,26 @@ public:
 		}*/
 
 	}
-	bool LEDScreen_setText(const char *textData)
+	bool LEDScreen_setText(std::vector<std::string> ips,std::vector<std::string> texts)
 	{
-
-		unsigned char pSendData[1280] = { 0x1A,0x1B };
-
-
-		memcpy(pSendData + 2, textData, strlen(textData));
-
-		int nlength = strlen(textData);
-		pSendData[2 + nlength] = 0x01;
-
-		pSendData[3 + nlength] = 0x1C;
-		pSendData[4 + nlength] = 0x1D;
-
-		int len = LEDFunc::ledCls(pSendData);
-
-		BOOL ret = EYEST_NET_SERIAL_CONTROL_EX(m_ipaddrstr, 37890, 1, (char *)pSendData, len);
-		if (ret)
+		unsigned char pCleanData[1280] = { 0 };
+		unsigned char pSendData[1280] = { 0 };
+		int ClenDatalen = LEDFunc::ledCls(pCleanData);
+		int datalen = LEDFunc::ledText(5000, texts, "rd", pSendData);
+		BOOL ret = 0;
+		for (int i = 0; i < ips.size(); i++)
 		{
-			len = LEDFunc::ledText(1, 5000, textData, "rd", pSendData);
-			ret = EYEST_NET_SERIAL_CONTROL_EX(m_ipaddrstr, 37890, 1, (char *)pSendData, len);
+			ret = EYEST_NET_SERIAL_CONTROL_EX(ips[i].data(), 37890, 1, (char*)pCleanData, ClenDatalen);
+			if (ret)
+			{
+				ret = EYEST_NET_SERIAL_CONTROL_EX(ips[i].data(), 37890, 1, (char*)pSendData, datalen);
+			}
+
+			char log[1024];
+			sprintf(log, "LED发送字符串 [%s]--%s",ips[i].data(), ret ? "成功" : "失败");
+
+			AddLogtoList(log);
 		}
-
-		char log[1024];
-		sprintf(log, "LED发送字符串%s--%s", ret ? "成功" : "失败", textData);
-
-		AddLogtoList(log);
 		return ret;
 	}
 

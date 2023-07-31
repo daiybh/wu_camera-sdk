@@ -77,4 +77,41 @@ public:
 		len += sprintf(str + len, "}]}");
 		return  CmdSendLed(str, len, pData);
 	}
+	static int ledText(int ms, std::vector<std::string> texts, const char* color, unsigned char* pData)
+	{
+		char str[1024] = { 0 };
+		int len = 0;
+		memset(str, 0, 1024);
+		/*
+		"cmd":"text",
+		"param1":[
+			{
+				"ms":10000,
+				"priority":0,
+				"row":0,
+				"style":2,
+				"txt":"第1行"
+			},
+			{
+				"ms":10000,
+				"priority":0,
+				"row":1,
+				"style":2,
+				"txt":"第2行"
+			}
+		]
+
+
+		*/
+		std::string strTexts = "{\"cmd\":\"text\",\"param1\":[";
+		for (int i = 0; i < texts.size(); i++) {
+			sprintf(str, "{\"ms\":%d,\"priority\":0,\"row\":%d,\"style\":2,\"txt\":\"%s\",\"color\":\"%s\"}",
+							ms, i, texts[i].c_str(), color);
+			strTexts += str;
+		}
+		strTexts += "]}";
+		len = strTexts.length();
+
+		return CmdSendLed(strTexts.c_str(), len, pData);
+	}
 };
