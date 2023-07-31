@@ -268,13 +268,13 @@ public:
 	{
 		if (m_caminstance <= 0)
 		{
-			AddLogtoList("相机未连接");
+			AddLogtoList("camera don't connected");
 			return;
 		}
 		int  ret = EYEST_NET_IO_CLOSE_DOOR_EX(m_ipaddrstr, 37890, 0, 1);
 		if (ret)
 		{
-			AddLogtoList("发送关闸成功");
+			AddLogtoList("close door successed");
 		}
 	}
 
@@ -329,7 +329,7 @@ public:
 
 		if (m_caminstance > 0)
 		{
-			AddLogtoList("相机已连接");
+			AddLogtoList("Camera already connected.");
 			if (m_playinstance > 0)
 			{
 				EYEST_NET_STOP_PREVIEW(m_caminstance,m_playinstance);
@@ -345,7 +345,7 @@ public:
 		{
 			m_camversion = EYEST_NET_GET_DEVICETYYPE(m_caminstance);
 			char strLog[1024];
-			sprintf(strLog, "相机连接成功,IP:%s ,Version:%d\n", m_ipaddrstr, m_camversion);
+			sprintf(strLog, "Camera connect success,IP:%s ,Version:%d\n", m_ipaddrstr, m_camversion);
 			AddLogtoList(strLog);
 		}
 		else
